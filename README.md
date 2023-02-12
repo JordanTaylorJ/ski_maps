@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# SkiMap
+## https://skimap.org/pages/Developers
+
+# MapBox
+## whttps://docs.mapbox.com/#maps
