@@ -25,8 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_174745) do
   create_table "resorts", force: :cascade do |t|
     t.string "name"
     t.string "website"
-    t.string "terrain_park"
-    t.string "night_skiing"
+    t.string "elevation"
     t.string "operating_status"
     t.string "latitude"
     t.string "longitude"

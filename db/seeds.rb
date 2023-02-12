@@ -14,20 +14,22 @@ u1 = User.create(username: "Admin", password: "12345")
 puts "Getting Ski Data"
 
 def ski_data 
-    ski = RestClient.get("https://skimap.org/SkiAreas/.json")
-    ski_array = JSON.parse(ski)
+    response = RestClient.get("https://skimap.org/SkiAreas/.json")
+    ski_array = JSON.parse(response)
     ski_array.each do |s|
         Resort.create(
-            name: s["name"],
-            website: s["official_website"],
-            terrain_park: s["terrain_park"],
-            night_skiing: s["night_skiing"],
-            operating_status: s["operating_status"],
-            latitude: s["latitude"],
-            longitude: s["longitude"]
+            name: s["SkiArea"]["name"],
+            website: s["SkiArea"]["official_website"],
+            elevation: s["SkiArea"]["top_elevation"],
+            operating_status: s["SkiArea"]["operating_status"],
+            latitude: s["SkiArea"]["geo_lat"],
+            longitude: s["SkiArea"]["geo_lng"]
+            #terrain_park: s["SkiArea"]["terrain_park"],
+            #night_skiing: s["SkiArea"]["night_skiing"],
         )
     end
 end
 
+ski_data()
 
 puts 'seeded!'
