@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  website: MyString
+  terrain_park: MyString
+  night_skiing: MyString
+  operating_status: MyString
+  latitude: MyString
+  longitude: MyString
+
+two:
+  name: MyString
+  website: MyString
+  terrain_park: MyString
+  night_skiing: MyString
+  operating_status: MyString
+  latitude: MyString
+  longitude: MyString
