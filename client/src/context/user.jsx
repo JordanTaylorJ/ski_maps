@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 const UserContext = React.createContext();
 
-function UserProvider({}){
+function UserProvider({children}){
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -15,7 +15,7 @@ function UserProvider({}){
       }, []);
 
     return (
-        <UserContext.Provider value={{user, setUser}}> 
+        <UserContext.Provider value={{user}}> 
             {children} 
         </UserContext.Provider> 
     )

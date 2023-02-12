@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './components/Home'
-import {UserProvider} from '../context/user';
+import {UserProvider} from './context/user';
 
 function App() {
 

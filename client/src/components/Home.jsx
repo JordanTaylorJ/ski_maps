@@ -5,10 +5,10 @@ const Home = () => {
     
     const user = useContext(UserContext);
 
+    console.log(user, 'user ???')
     return(
         <>
             <h1>HOME</h1>
-            <p>{user}</p>
         </>
     )
 }
