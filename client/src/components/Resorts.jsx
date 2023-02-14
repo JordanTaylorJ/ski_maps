@@ -1,4 +1,4 @@
-import React, {useState, useRef, useCallback} from 'react';
+import React, {useState} from 'react';
 import ReactMapGL, {  Marker, NavigationControl, FullscreenControl} from 'react-map-gl';
 
 
@@ -7,12 +7,10 @@ const Resorts = ({resorts}) => {
     console.log('are resorts coming in ??', resorts);
     
     const [viewport, setViewport] = useState({
-        longitude: -101.2996,
-        latitude: 47.1164,
-        zoom: 6
+        longitude: -100,
+        latitude: 40,
+        zoom: 4
     });
-
-    const mapRef = useRef();
 
     const fullscreenControlStyle = {
         top: 70,
@@ -28,22 +26,17 @@ const Resorts = ({resorts}) => {
 
     return(
         <ReactMapGL
-            ref={mapRef}
-            
+            {...viewport}
             mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            initialViewState={{
-                longitude: -100,
-                latitude: 40,
-                zoom: 3.5,
-            }}
-            onViewportChange={setViewport}
+            //initialViewState={{
+            //    longitude: -100,
+            //    latitude: 40,
+            //    zoom: 3.5,
+            //}}
+            onMove={evt => setViewport(evt.viewState)}
             mapStyle="mapbox://styles/mapbox/streets-v11"
             transitionDuration='200'
-
             style={{width: '100%', height: '100vh'}}
-            //width="100%"
-            //height="100vh"
-            
         > 
             {resorts.map((resort) => {
                 <Marker 
@@ -51,9 +44,7 @@ const Resorts = ({resorts}) => {
                     latitude={resort.latitude}
                     longitude={resort.longitude}
                 >
-                    <button>
-                        YOOO
-                    </button>
+                    HEY!
                 </Marker>
             })}
             <FullscreenControl style={fullscreenControlStyle} />
