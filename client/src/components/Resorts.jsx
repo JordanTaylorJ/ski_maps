@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import ReactMapGL, {  Marker, NavigationControl, FullscreenControl} from 'react-map-gl';
-
+import ReactMapGL, {Marker, Popup, NavigationControl, FullscreenControl} from 'react-map-gl';
+import Pin from './Pin'
 
 const Resorts = ({resorts}) => {
     
     console.log('are resorts coming in ??', resorts);
     
+    //resorts.map((resort) => {console.log(resort.latitude)})
+
     const [viewport, setViewport] = useState({
         longitude: -100,
         latitude: 40,
@@ -38,15 +40,14 @@ const Resorts = ({resorts}) => {
             transitionDuration='200'
             style={{width: '100%', height: '100vh'}}
         > 
-            {resorts.map((resort) => {
-                <Marker 
-                    key={resort.id}
-                    latitude={resort.latitude}
-                    longitude={resort.longitude}
-                >
-                    HEY!
-                </Marker>
-            })}
+            <Marker 
+                
+                latitude='40'
+                longitude='-100'
+                anchor='bottom'
+            >
+                <Pin />
+            </Marker>
             <FullscreenControl style={fullscreenControlStyle} />
             <NavigationControl style={navStyle} />
         </ReactMapGL>
@@ -54,3 +55,20 @@ const Resorts = ({resorts}) => {
 }
 
 export default Resorts;
+
+
+
+/*
+
+            {resorts.map((resort) => {
+                <Marker 
+                    key={resort.id}
+                    latitude={resort.latitude}
+                    longitude={resort.longitude}
+                    anchor='bottom'
+                >
+                    <Pin />
+                </Marker>
+            })}
+
+*/
