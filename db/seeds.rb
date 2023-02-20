@@ -9,6 +9,8 @@
 require 'rest-client'
 
 
+Resort.destroy_all
+
 u1 = User.create(username: "Admin", password: "12345")
 
 puts "Getting Ski Data"
@@ -17,16 +19,18 @@ def ski_data
     response = RestClient.get("https://skimap.org/SkiAreas/.json")
     ski_array = JSON.parse(response)
     ski_array.each do |s|
-        Resort.create(
-            name: s["SkiArea"]["name"],
-            website: s["SkiArea"]["official_website"],
-            elevation: s["SkiArea"]["top_elevation"],
-            operating_status: s["SkiArea"]["operating_status"],
-            latitude: s["SkiArea"]["geo_lat"],
-            longitude: s["SkiArea"]["geo_lng"]
-            #terrain_park: s["SkiArea"]["terrain_park"],
-            #night_skiing: s["SkiArea"]["night_skiing"],
-        )
+        if (s["SkiArea"]["geo_lat"] != 'null')
+            Resort.create(
+                name: s["SkiArea"]["name"],
+                website: s["SkiArea"]["official_website"],
+                elevation: s["SkiArea"]["top_elevation"],
+                operating_status: s["SkiArea"]["operating_status"],
+                latitude: s["SkiArea"]["geo_lat"],
+                longitude: s["SkiArea"]["geo_lng"]
+                #terrain_park: s["SkiArea"]["terrain_park"],
+                #night_skiing: s["SkiArea"]["night_skiing"],
+            )
+        end
     end
 end
 
