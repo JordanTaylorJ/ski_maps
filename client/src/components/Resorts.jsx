@@ -50,7 +50,7 @@ const Resorts = ({resorts}) => {
         const obj = {
             type: 'Feature', geometry: {type: 'Point', coordinates: [resort.latitude, resort.longitude]}
         }
-        geojson[features].push(obj)
+        geojson.features.push(obj)
         })  
 
 
