@@ -3,14 +3,22 @@ import { UserContext } from "../context/user";
 
 const Home = () => {
     
-    const user = useContext(UserContext);
+    const {user} = useContext(UserContext);
 
     console.log(user, 'user ???')
-    return(
-        <>
-            <h1>HOME</h1>
-        </>
-    )
+    if (!user){
+        return(
+            <h1>Welcome</h1>
+        )
+    } else {
+        return(
+            <>
+                <h1>HOME</h1>
+                <p>{`Welcome ${user.username}`}</p>
+            </>
+        )
+    }
+    
 }
 
 export default Home;
