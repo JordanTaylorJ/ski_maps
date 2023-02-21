@@ -10,7 +10,13 @@ import { UserContext } from "../context/user";
 
 const Navbar = () => {
 
-    const user = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext);
+
+    function handleLogout() {
+        fetch("/logout", {
+          method: "DELETE",
+        }).then(() => setUser(""))
+    }
 
     return(
         <AppBar position="static">
@@ -45,7 +51,7 @@ const Navbar = () => {
             </Box>
             { user ? (
               <Button
-                  //onClick={handleLogout}
+                  onClick={handleLogout}
                   sx={{ my: 2, color: 'white', display: 'block' }}
               > Logout
               </Button>
