@@ -3,12 +3,8 @@ import ReactMapGL, {Marker, Popup, NavigationControl, FullscreenControl} from 'r
 import Pin from './Pin'
 
 const Resorts = ({resorts}) => {
-    
-    console.log('are resorts coming in ??', resorts);
-    
-    //resorts.map((resort) => {console.log(resort.latitude)})
-    const [selectedResort, setSelectedResort] = useState(null);
 
+    const [selectedResort, setSelectedResort] = useState(null);
     const [viewport, setViewport] = useState({
         longitude: -100,
         latitude: 40,
@@ -27,6 +23,24 @@ const Resorts = ({resorts}) => {
         padding: "10px",
     };
 
+    console.log("what is selected??", selectedResort);
+    
+    const markers = useMemo(() => resorts.map(resort =>
+        <Marker 
+            key={resort.id}
+            latitude={resort.latitude}
+            longitude={resort.longitude}
+            anchor='bottom'
+            onClick={(e) => {
+                setSelectedResort(resort)
+            }}
+        >
+            <Pin />
+        </Marker>
+    ), [resorts]);
+
+    
+
     return(
         <ReactMapGL
             {...viewport}
@@ -39,13 +53,7 @@ const Resorts = ({resorts}) => {
             
             <FullscreenControl style={fullscreenControlStyle} />
             <NavigationControl style={navStyle} />
-            <Marker 
-                latitude='40'
-                longitude='-100'
-                anchor='bottom'
-            >
-                <Pin />
-            </Marker>
+            {markers}
             {/*
             <Popup/>
             {selectedResort !== null ? (
@@ -73,6 +81,7 @@ export default Resorts;
 
 
 
+
 /*
 //Using Marker and Pin
 
@@ -84,19 +93,16 @@ export default Resorts;
         />
     )
 
-   const markers = useMemo(() => resorts.map(resort =>
-        <Marker 
-            key={resort.id}
-            latitude={resort.latitude}
-            longitude={resort.longitude}
-            anchor='bottom'
-        >
-            <svg>
-                Some shit here
-            </svg>
-            <Pin />
-        </Marker>
-    ), [resorts]);
+                <Marker 
+                latitude='40'
+                longitude='-100'
+                anchor='bottom'
+                //onClick={setSelectedResort(resort)}
+            >
+                <Pin />
+            </Marker>
+
+
 
 */
 
