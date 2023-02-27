@@ -15,13 +15,19 @@ u1 = User.create(username: "Admin", password: "12345")
 
 puts "Getting Ski Data"
 
-Resort.create(
+r1 = Resort.create(
     name: "Breckenridge",
     website: "www.breckenridge.com",
     elevation: "3962",
     operating_status: true,
     latitude: "39.472250035504",
     longitude: "-106.06571187716"
+)
+
+Bookmark.create(
+    resort_id: r1,
+    user_id: User.order("random()").first.id,
+    notes: "This is a note"
 )
 
 Resort.create(
@@ -42,13 +48,18 @@ Resort.create(
     longitude: "-106.30222222222"
 )
 
-Resort.create(
+r4 = Resort.create(
     name: "Purgatory",
     website: "www.durangomountainresort.com",
     elevation: "3299",
     operating_status: true,
     latitude: "37.626495219635",
     longitude: "-107.83545101781"
+)
+Bookmark.create(
+    resort_id: r4,
+    user_id: User.order("random()").first.id,
+    notes: "This is another note"
 )
 
 Resort.create(
