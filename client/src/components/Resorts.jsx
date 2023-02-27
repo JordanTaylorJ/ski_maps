@@ -1,15 +1,23 @@
 import React, {useState, useMemo} from 'react';
 import ReactMapGL, {Marker, Popup, NavigationControl, FullscreenControl} from 'react-map-gl';
 import Pin from './Pin'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
 
 const Resorts = ({resorts}) => {
 
     const [selectedResort, setSelectedResort] = useState(null);
     const [viewport, setViewport] = useState({
-        longitude: -100,
-        latitude: 40,
-        zoom: 4
+        longitude: -105.7821,
+        latitude: 39.5501,
+        zoom: 6
     });
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const fullscreenControlStyle = {
         top: 70,
@@ -23,6 +31,18 @@ const Resorts = ({resorts}) => {
         padding: "10px",
     };
 
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+    };
+
     console.log("what is selected??", selectedResort);
     
     const markers = useMemo(() => resorts.map(resort =>
@@ -31,15 +51,15 @@ const Resorts = ({resorts}) => {
             latitude={resort.latitude}
             longitude={resort.longitude}
             anchor='bottom'
-            onClick={(e) => {
+            onClick={() => {
                 setSelectedResort(resort)
+                handleOpen()
             }}
         >
             <Pin />
+
         </Marker>
     ), [resorts]);
-
-    
 
     return(
         <ReactMapGL
@@ -54,146 +74,28 @@ const Resorts = ({resorts}) => {
             <FullscreenControl style={fullscreenControlStyle} />
             <NavigationControl style={navStyle} />
             {markers}
-            {/*
-            <Popup/>
-            {selectedResort !== null ? (
-                <Popup
-                    latitude={selectedResort.latitude}
-                    longitude={selectedResort.longitude}
-                    //onClose={handleClose}
-                >
-                    <div className="popupContent">
-                    <p>{selectedResort.name.toUpperCase()}</p>
-                    <div
-                        className="popupContent"
-                        //onClick={() => navigate(`/resorts/${selectedResort.id}`)}
-                    >
-                    </div>
-                    </div>
-                </Popup>
-            ) : null}
-            */}
+            
+            {selectedResort ? 
+            <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            >
+            <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                {selectedResort.name}
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                {selectedResort.website}
+                
+                </Typography>
+            </Box>
+            </Modal>
+            : null}
+
         </ReactMapGL>
     )
 }
 
 export default Resorts;
-
-
-
-
-/*
-//Using Marker and Pin
-
- 
-    const markers = resorts.map((resort) => 
-        <Source 
-            coordinates={[resort.lattitube, resort.longitude]}
-            properties={resort.name}
-        />
-    )
-
-                <Marker 
-                latitude='40'
-                longitude='-100'
-                anchor='bottom'
-                //onClick={setSelectedResort(resort)}
-            >
-                <Pin />
-            </Marker>
-
-
-
-*/
-
-
-/*   
-//Using Layer and Feature
-   
-    const geojson = {
-        type: 'FeatureCollection',
-        features: [
-          {type: 'Feature', geometry: {type: 'Point', coordinates: [-122.4, 37.8]}}
-        ]
-    };
-
-    const geojson = {
-        type: 'FeatureCollection',
-        features: [
-          {type: 'Feature', geometry: {type: 'Point', coordinates: [-122.4, 37.8]}},
-          {type: 'Feature', geometry: {type: 'Point', coordinates: [-127.4, 37.8]}}
-        ]
-    };
-
-    const skiData = useMemo(() => {
-        return allData && updatePercentiles(allData, s => s.properties.income[year]);
-      }, [allData, year]);
-
-    const geojson = {
-        type: 'FeatureCollection',
-        features: [{
-            resorts.forEach((resort) => {
-                    type: 'Feature', geometry: {type: 'Point', coordinates: [{resort.latitude}, {resort.longitude}]}
-            })
-        }]
-    };
-
-
-    */
-
-
-
-    /*
-
-    layers
-
-
-
-    const layerStyle = {
-        id: 'point',
-        type: 'circle',
-        paint: {
-            'circle-radius': 10,
-            'circle-color': '#007cbf'
-        }
-    };
-
-    //const skiData = [{type: 'Feature', geometry: {type: 'Point', coordinates: [-122.4, 37.8]}}]
-
-
-    const geojson = {
-        type: 'FeatureCollection',
-        features: [{type: 'Feature', geometry: {type: 'Point', coordinates: [-122.4, 37.8]}}]
-    };
-
-    resorts.forEach((resort) => {        
-        const obj = {
-            type: 'Feature', geometry: {type: 'Point', coordinates: [resort.latitude, resort.longitude]}
-        }
-        geojson.features.push(obj)
-    })  
-
-    */
-
-    /*
-    //nearly there but lets try something else... 
-
-    const geojson = {
-        type: 'FeatureCollection',
-        features: []
-    };
-
-    const skiData = useMemo(() => {
-        resorts.forEach((resort) => {
-            const obj = {
-                type: 'Feature', geometry: {type: 'Point', coordinates: [resort.latitude, resort.longitude]}
-            }
-            geojson.features.push(obj)
-        })
-        
-    }, [resorts]);
-
-        <Source id="my-data" type="geojson" data={geojson}>
-        <Layer {...layerStyle} />
-        </Source>
-    */
