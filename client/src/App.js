@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Resorts from './components/Resorts';
+import Bookmarks from './components/Bookmarks';
 import {UserProvider} from './context/user';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<Signup/>}/> 
           <Route path='/resort-map' element={<Resorts resorts={resorts}/>}/>
+          <Route path='/bookmarks' element={<Bookmarks />}/>
         </Routes>
       </Router>
     </UserProvider>

@@ -45,7 +45,7 @@ const Navbar = () => {
               </Button>
               <Button
                   sx={{ my: 2, color: 'white', display: 'block' }}
-                  component={Link} to='/aplaceihavetomakestill'
+                  component={Link} to='/bookmarks'
               >Bookmarked Resorts
               </Button> 
             </Box>
