@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Resorts from './components/Resorts';
 import Bookmarks from './components/Bookmarks';
+import ResortDetail from './components/ResortDetail';
 import {UserProvider} from './context/user';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path='/signup' element={<Signup/>}/> 
           <Route path='/resort-map' element={<Resorts resorts={resorts}/>}/>
           <Route path='/bookmarks' element={<Bookmarks />}/>
+          <Route path='/resortdetail' element={<ResortDetail resorts={resorts} />}/>
         </Routes>
       </Router>
     </UserProvider>
