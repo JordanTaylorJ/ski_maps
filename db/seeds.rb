@@ -25,7 +25,7 @@ r1 = Resort.create(
 )
 
 Bookmark.create(
-    resort_id: r1,
+    resort_id: r1.id,
     user_id: User.order("random()").first.id,
     notes: "This is a note"
 )
@@ -57,7 +57,7 @@ r4 = Resort.create(
     longitude: "-107.83545101781"
 )
 Bookmark.create(
-    resort_id: r4,
+    resort_id: r4.id,
     user_id: User.order("random()").first.id,
     notes: "This is another note"
 )
