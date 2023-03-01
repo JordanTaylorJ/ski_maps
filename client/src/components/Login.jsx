@@ -9,9 +9,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
-    const {user, setUser} = useContext(UserContext);
-
-    console.log('user', user);
+    const {setUser} = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault()

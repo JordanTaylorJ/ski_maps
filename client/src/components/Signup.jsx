@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { UserContext } from "../context/user";
 
 const Signup = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]); 
+    const {setUser} = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,7 +25,7 @@ const Signup = () => {
         })
         .then(r => {
             if (r.ok){
-                r.json().then((r) => console.log(r))
+                r.json().then((r) => setUser(r))
                 setErrors([])
             } else {
                 r.json().then((r) => setErrors(r.errors))
