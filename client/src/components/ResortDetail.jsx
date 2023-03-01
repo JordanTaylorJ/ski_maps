@@ -6,10 +6,15 @@ const ResortDetail = ({resorts}) => {
     let location = useLocation();
     const thisResort = resorts.find(resort => resort.id === parseInt(location.state.id));
 
+    console.log(thisResort, 'resort whats here?')
     return(
         <>
-            <p>details here</p>
-            <p>{thisResort.name}</p>
+            <h1>{thisResort.name}</h1>
+            {thisResort.comments.map(c => {
+                return(
+                    <p key={c.id}>{c.comment}</p>
+                )
+            })}
         </>
     )
 }
