@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import NewBookmark from './NewBookmark';
 
 
 const Resorts = ({resorts}) => {
@@ -49,11 +50,6 @@ const Resorts = ({resorts}) => {
     
     const detailRouteChange = (event) => {
         let path = '/resortdetail'
-        navigate(path, { state: { id: event.target.id} } );
-    }
-    
-    const bookmarkRouteChange = (event) => {
-        let path = '/bookmarks'
         navigate(path, { state: { id: event.target.id} } );
     }
 
@@ -105,13 +101,7 @@ const Resorts = ({resorts}) => {
                 >
                     View Details
                 </Button>
-                <Button 
-                    id={selectedResort.id}
-                    value={selectedResort.name}
-                    onClick={(e) => bookmarkRouteChange(e)}
-                >
-                    Bookmark
-                </Button>
+                <NewBookmark/>
             </Box>
             </Modal>
             : null}

@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import { useLocation } from "react-router-dom";
 import NewComment from './NewComment';
 import { UserContext } from "../context/user";
+import Button from '@mui/material/Button';
 
 const ResortDetail = ({resorts, setResorts}) => {
 
@@ -41,7 +42,12 @@ const ResortDetail = ({resorts, setResorts}) => {
             <h1>{thisResort.name}</h1>
             {comments.map(c => {
                 return(
-                    <p key={c.id}>{c.comment}</p>
+                    < div key={c.id}>
+                    <p>{c.comment}</p>
+                    <Button>
+                        Edit 
+                    </Button>
+                    </div>
                 )
             })}
             {user ? 
