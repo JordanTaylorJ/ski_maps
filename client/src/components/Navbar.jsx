@@ -43,18 +43,21 @@ const Navbar = () => {
                   component={Link} to='/resort-map'
               >Resorts
               </Button>
-              <Button
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                  component={Link} to='/bookmarks'
-              >Bookmarked Resorts
-              </Button> 
+
             </Box>
             { user ? (
-              <Button
+              <>
+                <Button
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  component={Link} to='/bookmarks'
+                >Bookmarked Resorts
+                </Button> 
+                <Button
                   onClick={handleLogout}
                   sx={{ my: 2, color: 'white', display: 'block' }}
-              > Logout
-              </Button>
+                > Logout
+                </Button>
+              </>
               ) : (
                 <Button
                 component={Link} to='/login'
