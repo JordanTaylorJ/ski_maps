@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const NewComment = ({thisResort}) => {
+const NewComment = ({thisResort, handleSubmitComment}) => {
 
     const {user} = useContext(UserContext);
     const [newComment, setNewComment] = useState({
@@ -18,8 +18,14 @@ const NewComment = ({thisResort}) => {
         setNewComment({...newComment, [target.name]:target.value});
     }
 
-    const handleSubmit = () => {
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        handleSubmitComment(newComment);
+        setNewComment({
+            user_id: user.id,
+            resort_id: thisResort.id,
+            comment: ""
+        })
     }
 
     return(

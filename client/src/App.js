@@ -30,7 +30,7 @@ function App() {
           <Route path='/signup' element={<Signup/>}/> 
           <Route path='/resort-map' element={<Resorts resorts={resorts}/>}/>
           <Route path='/bookmarks' element={<Bookmarks />}/>
-          <Route path='/resortdetail' element={<ResortDetail resorts={resorts} />}/>
+          <Route path='/resortdetail' element={<ResortDetail resorts={resorts} setResorts={setResorts} />}/>
         </Routes>
       </Router>
     </UserProvider>
