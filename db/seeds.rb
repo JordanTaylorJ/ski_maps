@@ -15,6 +15,8 @@ u1 = User.create(username: "Admin", password: "12345")
 
 puts "Getting Ski Data"
 
+
+
 r1 = Resort.create(
     name: "Breckenridge",
     website: "www.breckenridge.com",
@@ -30,13 +32,37 @@ Bookmark.create(
     notes: "This is a note"
 )
 
-Resort.create(
+Comment.create(
+    resort_id: r1.id,
+    user_id: User.order("random()").first.id,
+    comment: "This is the first comment."
+)
+
+Comment.create(
+    resort_id: r1.id,
+    user_id: User.order("random()").first.id,
+    comment: "This is the second comment."
+)
+
+r2 = Resort.create(
     name: "Monarch",
     website: "www.skimonarch.com",
     elevation: "3646",
     operating_status: true,
     latitude: "38.509782375",
     longitude: "-106.33707308036"
+)
+
+Comment.create(
+    resort_id: r2.id,
+    user_id: User.order("random()").first.id,
+    comment: "This is the first comment again."
+)
+
+Comment.create(
+    resort_id: r2.id,
+    user_id: User.order("random()").first.id,
+    comment: "This is the second comment again."
 )
 
 Resort.create(
@@ -62,6 +88,18 @@ Bookmark.create(
     notes: "This is another note"
 )
 
+Comment.create(
+    resort_id: r4.id,
+    user_id: User.order("random()").first.id,
+    comment: "This is the first comment here."
+)
+
+Comment.create(
+    resort_id: r4.id,
+    user_id: User.order("random()").first.id,
+    comment: "This is the second comment here."
+)
+
 Resort.create(
     name: "Keystone Resort",
     website: "www.keystone.snow.com",
@@ -80,26 +118,29 @@ Resort.create(
     longitude: "-108.15178072344"
 )
 
+=begin 
 
-#def ski_data 
-#    response = RestClient.get("https://skimap.org/SkiAreas/.json")
-#    ski_array = JSON.parse(response)
-#    ski_array.each do |s|
-#        if (s["SkiArea"]["geo_lat"] != 'null')
-#            Resort.create(
-#                name: s["SkiArea"]["name"],
-#                website: s["SkiArea"]["official_website"],
-#                elevation: s["SkiArea"]["top_elevation"],
-#                operating_status: s["SkiArea"]["operating_status"],
-#                latitude: s["SkiArea"]["geo_lat"],
-#                longitude: s["SkiArea"]["geo_lng"]
-#                #terrain_park: s["SkiArea"]["terrain_park"],
-#                #night_skiing: s["SkiArea"]["night_skiing"],
-#            )
-#        end
-#    end
-#end
+def ski_data 
+    response = RestClient.get("https://skimap.org/SkiAreas/.json")
+    ski_array = JSON.parse(response)
+    ski_array.each do |s|
+        if (s["Region"]["name"] == "Colorado")
+            Resort.create(
+                name: s["SkiArea"]["name"],
+                website: s["SkiArea"]["official_website"],
+                #elevation: s["SkiArea"]["top_elevation"],
+                #operating_status: s["SkiArea"]["operating_status"],
+                latitude: s["SkiArea"]["geo_lat"],
+                longitude: s["SkiArea"]["geo_lng"]
+                #terrain_park: s["SkiArea"]["terrain_park"],
+                #night_skiing: s["SkiArea"]["night_skiing"],
+            )
+        end
+    end
+end
 
-#ski_data()
+ski_data()
+
+=end
 
 puts 'seeded!'

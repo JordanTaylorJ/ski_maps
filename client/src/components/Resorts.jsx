@@ -45,12 +45,9 @@ const Resorts = ({resorts}) => {
         p: 4,
     };
 
-    console.log("what is selected??", selectedResort);
-
     let navigate = useNavigate();
     
     const routeChange = (event) => {
-        console.log(event.target.id, 'event id thing')
         let path = '/resortdetail'
         navigate(path, { state: { id: event.target.id} } );
     }
@@ -67,7 +64,6 @@ const Resorts = ({resorts}) => {
             }}
         >
             <Pin />
-
         </Marker>
     ), [resorts]);
 
@@ -80,11 +76,9 @@ const Resorts = ({resorts}) => {
             transitionDuration='200'
             style={{width: '100%', height: '100vh'}}
         > 
-            
             <FullscreenControl style={fullscreenControlStyle} />
             <NavigationControl style={navStyle} />
             {markers}
-            
             {selectedResort ? 
             <Modal
                 open={open}
@@ -109,7 +103,6 @@ const Resorts = ({resorts}) => {
             </Box>
             </Modal>
             : null}
-
         </ReactMapGL>
     )
 }
