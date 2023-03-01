@@ -47,11 +47,16 @@ const Resorts = ({resorts}) => {
 
     let navigate = useNavigate();
     
-    const routeChange = (event) => {
+    const detailRouteChange = (event) => {
         let path = '/resortdetail'
         navigate(path, { state: { id: event.target.id} } );
     }
     
+    const bookmarkRouteChange = (event) => {
+        let path = '/bookmarks'
+        navigate(path, { state: { id: event.target.id} } );
+    }
+
     const markers = useMemo(() => resorts.map(resort =>
         <Marker 
             key={resort.id}
@@ -63,7 +68,7 @@ const Resorts = ({resorts}) => {
                 handleOpen()
             }}
         >
-            <Pin />
+        <Pin />
         </Marker>
     ), [resorts]);
 
@@ -96,9 +101,16 @@ const Resorts = ({resorts}) => {
                 <Button 
                     id={selectedResort.id}
                     value={selectedResort.name}
-                    onClick={(e) => routeChange(e)}
+                    onClick={(e) => detailRouteChange(e)}
                 >
                     View Details
+                </Button>
+                <Button 
+                    id={selectedResort.id}
+                    value={selectedResort.name}
+                    onClick={(e) => bookmarkRouteChange(e)}
+                >
+                    Bookmark
                 </Button>
             </Box>
             </Modal>
