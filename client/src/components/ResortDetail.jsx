@@ -19,7 +19,7 @@ const ResortDetail = ({resorts}) => {
                 )
             })}
             {user ? 
-            <NewComment/>
+            <NewComment thisResort={thisResort} />
             : 
             <p>must login to comment</p>
             }
