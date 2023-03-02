@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :comments, only: [:create, :update, :destroy]
-  #resources :bookmarks
+  resources :bookmarks, only: [:create, :destroy]
   resources :resorts, only: [:show]
   resources :users, only: [:show, :create]
 
