@@ -34,7 +34,7 @@ const NewComment = ({thisResort, handleSubmitComment}) => {
                 component="form"
                 onSubmit={(e) => handleSubmit(e)}
                 sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                '& > :not(style)': { m: 1, width: '40ch' },
                 }}
                 noValidate
                 autoComplete="off"

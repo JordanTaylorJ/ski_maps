@@ -1,15 +1,25 @@
 import React, {useContext, useState} from 'react';
 import { useLocation } from "react-router-dom";
-import NewComment from './NewComment';
 import { UserContext } from "../context/user";
-import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import EditComment from './EditComment';
+import ListComment from './ListComment';
+import NewComment from './NewComment';
+
 
 const ResortDetail = ({resorts, setResorts}) => {
 
     let location = useLocation();
     const thisResort = resorts.find(resort => resort.id === parseInt(location.state.id));
     const {user} = useContext(UserContext);
+    
     const [comments, setComments] = useState(thisResort.comments)
+    const [editCommentId, setEditCommentId] = useState(null);
+    const [editComment, setEditComment] = useState({
+        comment: "",
+        user_id: user.id,
+        resort_id: thisResort.id
+    })
 
     const handleSubmitComment = (newComment) => {
         fetch('/comments', {
@@ -36,28 +46,76 @@ const ResortDetail = ({resorts, setResorts}) => {
         setComments(updatedComments)
     }
 
-    console.log(thisResort, 'resort whats here?')
+    const handleDelete = (e) => {
+        e.preventDefault();
+        fetch(`/comments/${e.target.value}`, {
+            method: 'DELETE'
+        })
+        .then(r => {
+            if (r.ok) {handleDeleteComment(e.target.value)}
+        })
+    }
+
+    const handleDeleteComment = (deletedCommentId) => {
+        const updatedComments = comments.filter((comment) => comment.id !== parseInt(deletedCommentId));
+        const updatedResorts = resorts.map((resort) => {
+            if (resort.id === thisResort.id){
+                return{...resort, comments:updatedComments} 
+            } else return resort
+        })
+        setComments(updatedComments);
+        setResorts(updatedResorts);
+    }
+
+    //prepopulate form data for editted comment
+    const handleEditCommentId = (e, comment) => {
+        e.preventDefault();
+        setEditCommentId(comment.id)
+        const formValues = {
+            comment: comment.comment,
+            resort_id: comment.resort_id,
+            user_id: comment.user_id
+        }
+        setEditComment(formValues)
+    }
+
+    const handleEditFormChange = (e) => {
+        const target = e.target;
+        setEditComment({...editComment, [target.name]:target.value});
+    }
+
     return(
         <>
             <h1>{thisResort.name}</h1>
-            {comments.map(c => {
+            
+            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#cce3dd' }}>
+            {comments.map(comment => {
                 return(
-                    < div key={c.id}>
-                    <p>{c.comment}</p>
-                    <Button>
-                        Edit 
-                    </Button>
-                    </div>
+                    <>
+                    {editCommentId === comment.id ? 
+                    <EditComment 
+                        editComment={editComment}
+                        handleEditFormChange={handleEditFormChange}
+                        //handleCancelEditClick={handleCancelEditClick}
+                        //handleSubmitEdit={handleSubmitEdit}
+                    />
+                    :
+                    <ListComment 
+                        comment={comment}
+                        user={user}
+                        handleDelete={handleDelete}
+                        handleEditCommentId={handleEditCommentId}
+                    />
+                    }
+                    </>
                 )
             })}
+            </List>
             {user ? 
             <NewComment 
                 thisResort={thisResort} 
                 handleSubmitComment={handleSubmitComment} 
-            />
-            : 
-            <p>Login to comment!</p>
-            }
+            /> : <h2>Login to comment!</h2>}
         </>
     )
 }
