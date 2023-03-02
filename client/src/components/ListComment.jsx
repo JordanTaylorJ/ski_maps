@@ -9,12 +9,11 @@ const ListComment = ({comment, handleDelete, handleEditCommentId}) => {
     
     const {user} = useContext(UserContext);
 
-    console.log(comment)
     return(
         <>
         <ListItem alignItems="flex-start">
             <ListItemText 
-                //primary={comment.user.username}
+                //primary={comment.user}
                 secondary={
                     <React.Fragment>
                     <Typography

@@ -5,7 +5,6 @@ const Home = () => {
     
     const {user} = useContext(UserContext);
 
-    console.log(user, 'user ???')
     if (!user){
         return(
             <h1>Welcome</h1>

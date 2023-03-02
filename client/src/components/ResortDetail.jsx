@@ -116,6 +116,10 @@ const ResortDetail = ({resorts, setResorts}) => {
         setEditComment({...editComment, [target.name]:target.value});
     }
 
+    const handleCancelEditClick = () => {
+        setEditCommentId(null);
+    }
+
     return(
         <>
             <h1>{thisResort.name}</h1>
@@ -128,7 +132,7 @@ const ResortDetail = ({resorts, setResorts}) => {
                     <EditComment 
                         editComment={editComment}
                         handleEditFormChange={handleEditFormChange}
-                        //handleCancelEditClick={handleCancelEditClick}
+                        handleCancelEditClick={handleCancelEditClick}
                         handleSubmitEdit={handleSubmitEdit}
                     />
                     :

@@ -7,7 +7,6 @@ const Bookmarks = () => {
     const {user, setUser} = useContext(UserContext);
     const [bookmarks, setBookmarks] = useState(user.bookmarks)
 
-    console.log(bookmarks, 'bookmarks')
     return(
         <>
         {bookmarks.map(bookmark => 

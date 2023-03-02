@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const EditComment = ({editComment, handleEditFormChange, handleSubmitEdit}) => {
+const EditComment = ({editComment, handleEditFormChange, handleSubmitEdit, handleCancelEditClick}) => {
 
     return(
         <Box
@@ -32,7 +32,7 @@ const EditComment = ({editComment, handleEditFormChange, handleSubmitEdit}) => {
             > Save 
             </Button>
             <Button
-                //onClick={handleCancelEditClick}
+                onClick={handleCancelEditClick}
             > Cancel 
             </Button>
         </Box>
