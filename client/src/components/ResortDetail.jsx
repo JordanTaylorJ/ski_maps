@@ -46,6 +46,38 @@ const ResortDetail = ({resorts, setResorts}) => {
         setComments(updatedComments)
     }
 
+    const handleSubmitEdit = (e) => {
+        e.preventDefault();
+        fetch(`/comments/${editCommentId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(editComment)
+        })
+        .then(r => r.json())
+        .then((r) => handleEditUpdateComments(r))
+    }
+
+    const handleEditUpdateComments = (updatedComment) => {
+        const updatedComments = comments.map((comment) => {
+            if (comment.id === editCommentId) {
+                return updatedComment
+            } else return comment 
+        })
+        const updatedResorts = resorts.map((resort => {
+            if (resort.id === updatedComment.resort_id) {
+                return({
+                    ...resort,
+                    comments: updatedComments
+                }) 
+            } else return resort 
+        }))
+        setComments(updatedComments);
+        setResorts(updatedResorts);
+        setEditCommentId(null);
+    }
+
     const handleDelete = (e) => {
         e.preventDefault();
         fetch(`/comments/${e.target.value}`, {
@@ -97,7 +129,7 @@ const ResortDetail = ({resorts, setResorts}) => {
                         editComment={editComment}
                         handleEditFormChange={handleEditFormChange}
                         //handleCancelEditClick={handleCancelEditClick}
-                        //handleSubmitEdit={handleSubmitEdit}
+                        handleSubmitEdit={handleSubmitEdit}
                     />
                     :
                     <ListComment 

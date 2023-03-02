@@ -5,7 +5,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Resorts from './components/Resorts';
+import ResortsMap from './components/ResortsMap';
 import Bookmarks from './components/Bookmarks';
 import ResortDetail from './components/ResortDetail';
 import {UserProvider} from './context/user';
@@ -28,7 +28,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<Signup/>}/> 
-          <Route path='/resort-map' element={<Resorts resorts={resorts}/>}/>
+          <Route path='/resort-map' element={<ResortsMap resorts={resorts}/>}/>
           <Route path='/bookmarks' element={<Bookmarks />}/>
           <Route path='/resortdetail' element={<ResortDetail resorts={resorts} setResorts={setResorts} />}/>
         </Routes>

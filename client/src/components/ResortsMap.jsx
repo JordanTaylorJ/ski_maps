@@ -9,7 +9,7 @@ import Modal from '@mui/material/Modal';
 import NewBookmark from './NewBookmark';
 
 
-const Resorts = ({resorts}) => {
+const ResortsMap = ({resorts}) => {
 
     const [selectedResort, setSelectedResort] = useState(null);
     const [viewport, setViewport] = useState({
@@ -109,4 +109,4 @@ const Resorts = ({resorts}) => {
     )
 }
 
-export default Resorts;
+export default ResortsMap;
