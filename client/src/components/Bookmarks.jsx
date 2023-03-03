@@ -15,6 +15,28 @@ const Bookmarks = () => {
         notes: ''
     })
 
+    const handleDelete = (e) => {
+        console.log(e.target.value, 'target')
+        console.log()
+        fetch(`/bookmarks/${e.target.value}`, {
+            method: 'DELETE'
+        })
+        .then(r => {
+            if (r.ok) {handleDeleteBookmark(e.target.value)}
+        })
+    }
+
+    const handleDeleteBookmark = (deletedBookmark) => {
+        const updatedBookmarks = user.bookmarks.filter((bookmark) => bookmark.id !== parseInt(deletedBookmark));
+        const updatedUser = {
+            id: user.id,
+            username: user.username, 
+            bookmarks: updatedBookmarks
+        }
+        setUser(updatedUser);
+        setBookmarks(updatedBookmarks);
+    }
+
     const handleCancelEditClick = () => {
         setEditBookmarkId(null);
     }
@@ -64,6 +86,12 @@ const Bookmarks = () => {
                     <Button onClick={() => setEditBookmarkId(bookmark.id)}
                     >
                         Edit
+                    </Button>
+                    <Button 
+                        onClick={(e) => handleDelete(e)}
+                        value={bookmark.id}
+                    >
+                        Delete
                     </Button>
                 </div>
                 )

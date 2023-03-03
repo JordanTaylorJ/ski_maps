@@ -10,7 +10,7 @@ class BookmarksController < ApplicationController
     end 
 
     def destroy
-        find_bookmark
+        bookmark = find_bookmark
         bookmark.destroy
         head :no_content
     end 
@@ -22,7 +22,7 @@ class BookmarksController < ApplicationController
     end
 
     def bookmark_params
-        params.permit(:notes, :resort_id, :user_id)
+        params.permit(:id, :notes, :resort_id, :user_id)
     end 
 
 end
