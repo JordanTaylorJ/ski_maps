@@ -1,11 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import { UserContext } from "../context/user";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-const NewBookmark = () => {
-    
+const NewBookmark = ({resort}) => {
+
+    const {user, setUser} = useContext(UserContext);
+    const [newBookmark, setNewBookmark] = useState({
+        resort_id: resort.id,
+        user_id: user.id,
+        notes: ''
+    })
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -27,6 +35,11 @@ const NewBookmark = () => {
         px: 4,
         pb: 3,
       };
+
+      const handleBookmarkChange = (e) => {
+        const target = e.target
+        setNewBookmark({...newBookmark, [target.name]:target.value})
+      }
     
     return (
         <React.Fragment>
@@ -59,8 +72,8 @@ const NewBookmark = () => {
                     maxRows={4}
                     type='text'
                     name='notes'
-                    //value={newComment.comment}
-                    //onChange={(e) => handleCommentChange(e)} 
+                    value={newBookmark.notes}
+                    onChange={(e) => handleBookmarkChange(e)} 
                 />
                 <Button
                     type='submit' 

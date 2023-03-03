@@ -101,7 +101,7 @@ const ResortsMap = ({resorts}) => {
                 >
                     View Details
                 </Button>
-                <NewBookmark/>
+                <NewBookmark resort={selectedResort}/>
             </Box>
             </Modal>
             : null}
