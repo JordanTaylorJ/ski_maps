@@ -22,7 +22,7 @@ class BookmarksController < ApplicationController
     end
 
     def bookmark_params
-        params.permit(:note, :resort_id, :user_id)
+        params.permit(:notes, :resort_id, :user_id)
     end 
 
 end

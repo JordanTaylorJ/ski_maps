@@ -34,12 +34,40 @@ const NewBookmark = ({resort}) => {
         pt: 2,
         px: 4,
         pb: 3,
-      };
+    };
 
-      const handleBookmarkChange = (e) => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetch('/bookmarks',{
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(newBookmark)
+        })
+        .then(r => r.json())
+        .then(r => handleAddBookmark(r))
+    }
+
+    const handleAddBookmark = (createdBookmark) => {
+        const updatedBookmarks = [...user.bookmarks, createdBookmark]
+        const updatedUser = {
+            id: user.id,
+            username: user.username,
+            bookmarks: updatedBookmarks
+        }
+        setUser(updatedUser);
+        setNewBookmark({
+            resort_id: resort.id,
+            user_id: user.id,
+            notes: ''
+        });
+    }
+
+    const handleBookmarkChange = (e) => {
         const target = e.target
         setNewBookmark({...newBookmark, [target.name]:target.value})
-      }
+    }
     
     return (
         <React.Fragment>
@@ -51,13 +79,13 @@ const NewBookmark = ({resort}) => {
             aria-describedby="child-modal-description"
         >
             <Box sx={{ ...style, width: 400 }}>
-            <h2 id="child-modal-title">Bookmark with notes</h2>
+            <h2 id="child-modal-title">Bookmark</h2>
             <p id="child-modal-description">
-                Notes: 
+                Optional Notes: 
             </p>
             <Box
                 component="form"
-                //onSubmit={(e) => handleSubmit(e)}
+                onSubmit={(e) => handleSubmit(e)}
                 sx={{
                 '& > :not(style)': { m: 1, width: '20ch' },
                 }}
