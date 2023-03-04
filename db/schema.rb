@@ -33,10 +33,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_174529) do
   create_table "resorts", force: :cascade do |t|
     t.string "name"
     t.string "website"
-    t.string "elevation"
+    t.integer "elevation"
     t.string "operating_status"
     t.string "latitude"
     t.string "longitude"
+    t.boolean "terrain_park"
+    t.boolean "night_skiing"
+    t.integer "lift_count"
+    t.integer "run_count"
+    t.string "map"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

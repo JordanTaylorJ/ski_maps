@@ -82,7 +82,7 @@ const Bookmarks = () => {
                 return(
                 <div key={bookmark.id} >
                     <h2>{bookmark.resort.name}</h2>
-                    <p>Notes: {bookmark.notes} here</p>
+                    <p>Notes: {bookmark.notes}</p>
                     <Button onClick={() => setEditBookmarkId(bookmark.id)}
                     >
                         Edit
