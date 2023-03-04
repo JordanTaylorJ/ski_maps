@@ -1,6 +1,7 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useContext} from 'react';
 import { useNavigate } from "react-router-dom";
 import ReactMapGL, {Marker, NavigationControl, FullscreenControl} from 'react-map-gl';
+import { UserContext } from "../context/user";
 import Pin from './Pin'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -17,7 +18,7 @@ const ResortsMap = ({resorts}) => {
         latitude: 39.5501,
         zoom: 6
     });
-
+    const {user} = useContext(UserContext);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -101,7 +102,9 @@ const ResortsMap = ({resorts}) => {
                 >
                     View Details
                 </Button>
+                {user ? 
                 <NewBookmark resort={selectedResort}/>
+                : null }
             </Box>
             </Modal>
             : null}
