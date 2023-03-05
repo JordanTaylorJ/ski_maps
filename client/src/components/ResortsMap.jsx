@@ -14,8 +14,8 @@ const ResortsMap = ({resorts}) => {
 
     const [selectedResort, setSelectedResort] = useState(null);
     const [viewport, setViewport] = useState({
-        longitude: -105.7821,
-        latitude: 39.5501,
+        longitude: -105.881866,
+        latitude: 38.507438,
         zoom: 6
     });
     const {user} = useContext(UserContext);

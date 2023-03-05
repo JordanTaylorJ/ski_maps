@@ -40,7 +40,11 @@ const Bookmarks = () => {
     const handleCancelEditClick = () => {
         setEditBookmarkId(null);
     }
-
+    if (bookmarks.length < 1) {
+        return(
+            <h2>Loading</h2>
+        )
+    }else {
     return(
         <div>
         {bookmarks.map(bookmark => {
@@ -100,6 +104,8 @@ const Bookmarks = () => {
         )} 
         </div>
     )
+    }
+
 }
 
 export default Bookmarks;
