@@ -13,6 +13,9 @@ import NewBookmark from './NewBookmark';
 
 const ResortDetail = ({resorts, setResorts}) => {
 
+    //let location = useLocation();
+    //const thisResort = resorts.find(resort => resort.id === parseInt(location.state.id));
+
     const params = useParams();
     const thisResort = resorts.find(resort => resort.name === params.name);
     
@@ -21,7 +24,7 @@ const ResortDetail = ({resorts, setResorts}) => {
     const [editCommentId, setEditCommentId] = useState(null);
     const [editComment, setEditComment] = useState({
         comment: "",
-        user_id: user.id,
+        user_id: "",
         resort_id: thisResort.id
     }) 
 
@@ -126,7 +129,7 @@ const ResortDetail = ({resorts, setResorts}) => {
     const handleCancelEditClick = () => {
         setEditCommentId(null);
     }
-    
+    console.log(thisResort, 'resort from detail page')
     return(
         <div class='center'>
             <h1>{thisResort.name}</h1>

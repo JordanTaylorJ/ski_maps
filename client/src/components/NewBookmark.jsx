@@ -62,6 +62,7 @@ const NewBookmark = ({resort}) => {
             user_id: user.id,
             notes: ''
         });
+        handleClose();
     }
 
     const handleBookmarkChange = (e) => {
