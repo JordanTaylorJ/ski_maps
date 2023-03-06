@@ -35,12 +35,12 @@ const Navbar = () => {
                 textDecoration: 'none',
               }}
             >
-              Ski
+              Ski Colorado
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
                   sx={{ my: 2, color: 'white', display: 'block' }}
-                  component={Link} to='/resort-map'
+                  component={Link} to='/resorts'
               >Resorts
               </Button>
 

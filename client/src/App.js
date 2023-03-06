@@ -28,9 +28,9 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<Signup/>}/> 
-          <Route path='/resort-map' element={<ResortsMap resorts={resorts}/>}/>
+          <Route path='/resorts' element={<ResortsMap resorts={resorts}/>}/>
           <Route path='/bookmarks' element={<Bookmarks />}/>
-          <Route path='/resortdetail' element={<ResortDetail resorts={resorts} setResorts={setResorts} />}/>
+          <Route path='/resorts/:name' element={<ResortDetail resorts={resorts} setResorts={setResorts} />}/>
         </Routes>
       </Router>
     </UserProvider>

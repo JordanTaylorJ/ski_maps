@@ -1,25 +1,35 @@
 import React, {useContext, useState} from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { UserContext } from "../context/user";
 import List from '@mui/material/List';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 import EditComment from './EditComment';
 import ListComment from './ListComment';
 import NewComment from './NewComment';
-
+import { CardActionArea } from '@mui/material';
 
 const ResortDetail = ({resorts, setResorts}) => {
 
-    let location = useLocation();
-    const thisResort = resorts.find(resort => resort.id === parseInt(location.state.id));
-    const {user} = useContext(UserContext);
+    //let location = useLocation();
+    //const thisResort = resorts.find(resort => resort.id === parseInt(location.state.id));
+
     
+    const params = useParams();
+    console.log(params, 'rams')
+    const thisResort = resorts.find(resort => resort.name === params.name);
+    console.log('this resort from detail', thisResort)
+
+    const {user} = useContext(UserContext);
     const [comments, setComments] = useState(thisResort.comments)
     const [editCommentId, setEditCommentId] = useState(null);
     const [editComment, setEditComment] = useState({
         comment: "",
         user_id: user.id,
         resort_id: thisResort.id
-    })
+    }) 
 
     const handleSubmitComment = (newComment) => {
         fetch('/comments', {
@@ -119,15 +129,39 @@ const ResortDetail = ({resorts, setResorts}) => {
     const handleCancelEditClick = () => {
         setEditCommentId(null);
     }
-
+    console.log(thisResort, 'resort from detail page')
     return(
-        <>
+        <div class='center'>
             <h1>{thisResort.name}</h1>
+            <Card sx={{ maxWidth: 1000 }} >
+            <CardActionArea>
+            <CardMedia
+                
+                sx={{ height: 540 }}
+                //style={{height: 0, paddingTop: '56.25%'}}
+                conmponent="img"
+                height="500"
+                image={thisResort.map}
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                {thisResort.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {thisResort.website} 
+                    Top elevation: {thisResort.elevation}
+                    Lifts: {thisResort.lift_count}
+                    Runs: {thisResort.run_count}
+                </Typography>
+            </CardContent>
+            </CardActionArea>
+            </Card>
             
-            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#cce3dd' }}>
+            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#65bbe0' }}>
             {comments.map(comment => {
                 return(
                     <>
+                    <h2>Comments:</h2>
                     {editCommentId === comment.id ? 
                     <EditComment 
                         editComment={editComment}
@@ -152,7 +186,7 @@ const ResortDetail = ({resorts, setResorts}) => {
                 thisResort={thisResort} 
                 handleSubmitComment={handleSubmitComment} 
             /> : <h2>Login to comment!</h2>}
-        </>
+        </div>
     )
 }
 

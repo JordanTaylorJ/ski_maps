@@ -11,16 +11,16 @@ const ListComment = ({comment, handleDelete, handleEditCommentId}) => {
 
     return(
         <>
-        <ListItem alignItems="flex-start">
+        <ListItem key={comment.id} alignItems="flex-start">
             <ListItemText 
                 //primary={comment.user}
                 secondary={
                     <React.Fragment>
                     <Typography
-                    sx={{ display: 'inline' }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
                     > {comment.comment}
                     </Typography>
                     </React.Fragment>

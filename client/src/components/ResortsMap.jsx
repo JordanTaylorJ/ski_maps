@@ -1,11 +1,10 @@
 import React, {useState, useMemo, useContext} from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ReactMapGL, {Marker, NavigationControl, FullscreenControl} from 'react-map-gl';
 import { UserContext } from "../context/user";
 import Pin from './Pin'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import NewBookmark from './NewBookmark';
 
@@ -46,13 +45,6 @@ const ResortsMap = ({resorts}) => {
         boxShadow: 24,
         p: 4,
     };
-
-    let navigate = useNavigate();
-    
-    const detailRouteChange = (event) => {
-        let path = '/resortdetail'
-        navigate(path, { state: { id: event.target.id} } );
-    }
 
     const markers = useMemo(() => resorts.map(resort =>
         <Marker 
@@ -95,13 +87,9 @@ const ResortsMap = ({resorts}) => {
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     {selectedResort.website}
                 </Typography>
-                <Button 
-                    id={selectedResort.id}
-                    value={selectedResort.name}
-                    onClick={(e) => detailRouteChange(e)}
-                >
+                <Link to={`/resorts/${selectedResort.name}`}>
                     View Details
-                </Button>
+                </Link>       
                 {user ? 
                 <NewBookmark resort={selectedResort}/>
                 : null }
