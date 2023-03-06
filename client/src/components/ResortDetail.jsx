@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { UserContext } from "../context/user";
 import List from '@mui/material/List';
 import Card from '@mui/material/Card';
@@ -9,12 +9,9 @@ import Typography from '@mui/material/Typography';
 import EditComment from './EditComment';
 import ListComment from './ListComment';
 import NewComment from './NewComment';
-import { CardActionArea } from '@mui/material';
+import NewBookmark from './NewBookmark';
 
 const ResortDetail = ({resorts, setResorts}) => {
-
-    //let location = useLocation();
-    //const thisResort = resorts.find(resort => resort.id === parseInt(location.state.id));
 
     const params = useParams();
     const thisResort = resorts.find(resort => resort.name === params.name);
@@ -129,14 +126,12 @@ const ResortDetail = ({resorts, setResorts}) => {
     const handleCancelEditClick = () => {
         setEditCommentId(null);
     }
-    console.log(thisResort, 'resort from detail page')
+    
     return(
         <div class='center'>
             <h1>{thisResort.name}</h1>
             <Card sx={{ maxWidth: 1000 }} >
-            <CardActionArea>
             <CardMedia
-                
                 sx={{ height: 540 }}
                 //style={{height: 0, paddingTop: '56.25%'}}
                 conmponent="img"
@@ -145,23 +140,30 @@ const ResortDetail = ({resorts, setResorts}) => {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                {thisResort.name}
+                    {thisResort.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {thisResort.website} 
-                    Top elevation: {thisResort.elevation}
-                    Lifts: {thisResort.lift_count}
-                    Runs: {thisResort.run_count}
+                    <ul> Top elevation: {thisResort.elevation}</ul>
+                    <ul>Lifts: {thisResort.lift_count}</ul>
+                    <ul>Runs: {thisResort.run_count}</ul>
+                    <ul>Terrain Park: {thisResort.terrain_park}</ul>
+                    <ul>Night Skiing: {thisResort.night_skiing}</ul>
+                    <a href={thisResort.website} target="_blank">
+                        {thisResort.website}
+                    </a> 
                 </Typography>
+               
+                {user ? 
+                <NewBookmark resort={thisResort}/>
+                : null }
             </CardContent>
-            </CardActionArea>
             </Card>
             
-            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#65bbe0' }}>
+            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#c9eff2' }}>
+            <h2>Comments:</h2>
             {comments.map(comment => {
                 return(
                     <>
-                    <h2>Comments:</h2>
                     {editCommentId === comment.id ? 
                     <EditComment 
                         editComment={editComment}
