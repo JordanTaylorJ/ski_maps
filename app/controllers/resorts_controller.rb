@@ -4,8 +4,7 @@ class ResortsController < ApplicationController
 
     def show
         resorts = Resort.all
-        render json: resorts, status: :ok
+        render json: resorts, include: 'comments.user', status: :ok
     end
-
 
 end

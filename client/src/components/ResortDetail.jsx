@@ -16,12 +16,9 @@ const ResortDetail = ({resorts, setResorts}) => {
     //let location = useLocation();
     //const thisResort = resorts.find(resort => resort.id === parseInt(location.state.id));
 
-    
     const params = useParams();
-    console.log(params, 'rams')
     const thisResort = resorts.find(resort => resort.name === params.name);
-    console.log('this resort from detail', thisResort)
-
+    
     const {user} = useContext(UserContext);
     const [comments, setComments] = useState(thisResort.comments)
     const [editCommentId, setEditCommentId] = useState(null);
@@ -30,6 +27,9 @@ const ResortDetail = ({resorts, setResorts}) => {
         user_id: user.id,
         resort_id: thisResort.id
     }) 
+
+    console.log('this resort from detail', thisResort)
+    console.log(comments)
 
     const handleSubmitComment = (newComment) => {
         fetch('/comments', {

@@ -13,7 +13,7 @@ const ListComment = ({comment, handleDelete, handleEditCommentId}) => {
         <>
         <ListItem key={comment.id} alignItems="flex-start">
             <ListItemText 
-                //primary={comment.user}
+                primary={comment.user.username}
                 secondary={
                     <React.Fragment>
                     <Typography
