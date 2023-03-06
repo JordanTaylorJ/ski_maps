@@ -29,8 +29,8 @@ const Navbar = () => {
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
                 fontFamily: 'Arial',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
+                fontWeight: 1000,
+                letterSpacing: '.2rem',
                 color: 'inherit',
                 textDecoration: 'none',
               }}
