@@ -9,6 +9,7 @@ import ResortsMap from './components/ResortsMap';
 import Bookmarks from './components/Bookmarks';
 import ResortDetail from './components/ResortDetail';
 import {UserProvider} from './context/user';
+import ResortFilter from './components/ResortFilter';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           <Route path='/resorts' element={<ResortsMap resorts={resorts}/>}/>
           <Route path='/bookmarks' element={<Bookmarks />}/>
           <Route path='/resorts/:name' element={<ResortDetail resorts={resorts} setResorts={setResorts} />}/>
+          <Route path='/filter' element={<ResortFilter resorts={resorts}/>}/>
         </Routes>
       </Router>
     </UserProvider>
