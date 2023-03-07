@@ -29,7 +29,7 @@ const ResortDetail = ({resorts, setResorts}) => {
     }) 
 
     console.log('this resort from detail', thisResort)
-    console.log(comments)
+    console.log('comments', comments)
 
     const handleSubmitComment = (newComment) => {
         fetch('/comments', {
@@ -143,14 +143,14 @@ const ResortDetail = ({resorts, setResorts}) => {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {thisResort.name}
+                    
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     <ul> Top elevation: {thisResort.elevation}</ul>
                     <ul>Lifts: {thisResort.lift_count}</ul>
                     <ul>Runs: {thisResort.run_count}</ul>
-                    <ul>Terrain Park: {thisResort.terrain_park}</ul>
-                    <ul>Night Skiing: {thisResort.night_skiing}</ul>
+                    <ul>Terrain Park: {thisResort.terrain_park.toString()}</ul>
+                    <ul>Night Skiing: {thisResort.night_skiing.toString()}</ul>
                     <a href={thisResort.website} target="_blank">
                         {thisResort.website}
                     </a> 

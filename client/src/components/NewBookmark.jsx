@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 const NewBookmark = ({resort}) => {
 
@@ -72,7 +74,7 @@ const NewBookmark = ({resort}) => {
     
     return (
         <React.Fragment>
-        <Button onClick={handleOpen}>Bookmark</Button>
+        <IconButton onClick={handleOpen} ><BookmarkBorderIcon /></IconButton>
         <Modal
             open={open}
             onClose={handleClose}
