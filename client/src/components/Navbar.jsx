@@ -7,15 +7,19 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom';
 import { UserContext } from "../context/user";
+import { useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
 
     const {user, setUser} = useContext(UserContext);
+    const nav = useNavigate();
 
     function handleLogout() {
         fetch("/logout", {
           method: "DELETE",
         }).then(() => setUser(""))
+        nav("/login");
     }
 
     return(

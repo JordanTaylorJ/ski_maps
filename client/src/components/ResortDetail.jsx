@@ -166,7 +166,7 @@ const ResortDetail = ({resorts, setResorts}) => {
             <h2>Comments:</h2>
             {comments.map(comment => {
                 return(
-                    <>
+                    <div>
                     {editCommentId === comment.id ? 
                     <EditComment 
                         editComment={editComment}
@@ -182,7 +182,7 @@ const ResortDetail = ({resorts, setResorts}) => {
                         handleEditCommentId={handleEditCommentId}
                     />
                     }
-                    </>
+                    </div>
                 )
             })}
             </List>
