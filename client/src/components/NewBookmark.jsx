@@ -40,15 +40,20 @@ const NewBookmark = ({resort}) => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('/bookmarks',{
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(newBookmark)
-        })
-        .then(r => r.json())
-        .then(r => handleAddBookmark(r))
+        const answer = user.bookmarks.filter(bookmark => bookmark.resort.name === resort.name)
+        if (answer.length > 0){
+            alert("This has already been bookmarked!")
+        } else {
+            fetch('/bookmarks',{
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(newBookmark)
+            })
+            .then(r => r.json())
+            .then(r => handleAddBookmark(r))
+        }
     }
 
     const handleAddBookmark = (createdBookmark) => {
@@ -97,7 +102,6 @@ const NewBookmark = ({resort}) => {
             >
                 <TextField 
                     id="outlined-multiline-flexible"
-                    label="Notes" 
                     variant="standard" 
                     multiline
                     maxRows={4}
