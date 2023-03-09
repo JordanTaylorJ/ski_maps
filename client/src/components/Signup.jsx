@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { UserContext } from "../context/user";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
 
@@ -10,6 +11,7 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]); 
     const {setUser} = useContext(UserContext);
+    const nav = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,6 +29,7 @@ const Signup = () => {
             if (r.ok){
                 r.json().then((r) => setUser(r))
                 setErrors([])
+                nav("/");
             } else {
                 r.json().then((r) => setErrors(r.errors))
             }    

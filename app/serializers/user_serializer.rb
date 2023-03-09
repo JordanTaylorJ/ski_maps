@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username
-  has_many :resorts
+  attributes :id, :username 
+  
   has_many :bookmarks
 
 end

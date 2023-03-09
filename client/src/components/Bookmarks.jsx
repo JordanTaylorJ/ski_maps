@@ -18,6 +18,8 @@ const Bookmarks = () => {
             if (r.ok) {handleDeleteBookmark(e.target.value)}
         })
     }
+    console.log('user', user)
+    console.log('bookmarks', bookmarks)
 
     const handleDeleteBookmark = (deletedBookmark) => {
         const updatedBookmarks = user.bookmarks.filter((bookmark) => bookmark.id !== parseInt(deletedBookmark));
@@ -30,7 +32,7 @@ const Bookmarks = () => {
         setBookmarks(updatedBookmarks);
     }
 
-    if (user) {
+    if (bookmarks.length > 0) {
         return(
             <div>
             {bookmarks.map(bookmark => {
@@ -53,7 +55,9 @@ const Bookmarks = () => {
             </div>
         )
     } else {
-        <p>No user</p>
+        return(
+            <h1>You haven't bookmarked any resorts!</h1>
+        )
     }
 
 }
