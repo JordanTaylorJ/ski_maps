@@ -300,7 +300,7 @@ Bookmark.create(
 
 
 #Comments
-rand(15..25).times do
+rand(20..30).times do
     Comment.create(
         resort_id: Resort.order("random()").first.id,
         user_id: User.order("random()").first.id,
