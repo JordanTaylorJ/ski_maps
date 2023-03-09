@@ -28,9 +28,6 @@ const ResortDetail = ({resorts, setResorts}) => {
         resort_id: thisResort.id
     }) 
 
-    console.log('this resort from detail', thisResort)
-    console.log('comments', comments)
-
     const handleSubmitComment = (newComment) => {
         fetch('/comments', {
             method: 'POST',
@@ -129,7 +126,7 @@ const ResortDetail = ({resorts, setResorts}) => {
     const handleCancelEditClick = () => {
         setEditCommentId(null);
     }
-    console.log(thisResort, 'resort from detail page')
+    
     return(
         <div class='center'>
             <h1>{thisResort.name}</h1>

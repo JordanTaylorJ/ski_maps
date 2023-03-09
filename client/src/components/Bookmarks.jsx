@@ -9,8 +9,6 @@ const Bookmarks = () => {
     const [bookmarks, setBookmarks] = useState(user.bookmarks)
 
     const handleDelete = (e) => {
-        console.log(e.target.value, 'target')
-        console.log()
         fetch(`/bookmarks/${e.target.value}`, {
             method: 'DELETE'
         })
@@ -18,8 +16,6 @@ const Bookmarks = () => {
             if (r.ok) {handleDeleteBookmark(e.target.value)}
         })
     }
-    console.log('user', user)
-    console.log('bookmarks', bookmarks)
 
     const handleDeleteBookmark = (deletedBookmark) => {
         const updatedBookmarks = user.bookmarks.filter((bookmark) => bookmark.id !== parseInt(deletedBookmark));

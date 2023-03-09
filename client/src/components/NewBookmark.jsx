@@ -37,7 +37,7 @@ const NewBookmark = ({resort}) => {
         px: 4,
         pb: 3,
     };
-    console.log(newBookmark, 'new bookmark')
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch('/bookmarks',{
