@@ -11,6 +11,7 @@ import ResortDetail from './components/ResortDetail';
 import NotFound from './components/NotFound';
 import {UserProvider} from './context/user';
 import ResortFilter from './components/ResortFilter';
+import { PrivateRoute } from './components/PrivateRoute';
 
 function App() {
 
@@ -31,7 +32,13 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<Signup/>}/> 
           <Route path='/resorts' element={<ResortsMap resorts={resorts}/>}/>
-          <Route path='/bookmarks' element={<Bookmarks />}/>
+          <Route path='/bookmarks'
+            element={
+              <PrivateRoute>
+                <Bookmarks />
+              </PrivateRoute>
+              }  
+          />
           <Route path='/resorts/:name' element={<ResortDetail resorts={resorts} setResorts={setResorts} />}/>
           <Route path='/filter' element={<ResortFilter resorts={resorts}/>}/>
           <Route path="*" element={<NotFound />} />
