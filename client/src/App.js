@@ -8,6 +8,7 @@ import Signup from './components/Signup';
 import ResortsMap from './components/ResortsMap';
 import Bookmarks from './components/Bookmarks';
 import ResortDetail from './components/ResortDetail';
+import NotFound from './components/NotFound';
 import {UserProvider} from './context/user';
 import ResortFilter from './components/ResortFilter';
 
@@ -33,6 +34,7 @@ function App() {
           <Route path='/bookmarks' element={<Bookmarks />}/>
           <Route path='/resorts/:name' element={<ResortDetail resorts={resorts} setResorts={setResorts} />}/>
           <Route path='/filter' element={<ResortFilter resorts={resorts}/>}/>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </UserProvider>
