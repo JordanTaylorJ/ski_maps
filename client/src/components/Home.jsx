@@ -16,12 +16,13 @@ const Home = () => {
             height: 650, 
             }}
         >
+            <h2>Plan your next ski trip!</h2> 
             {user ?
-                <h2>Welcome {user.username}</h2>
+                <h3>Welcome {user.username}</h3>
             : 
-                <h2>Login to join!</h2>
+                <h3>Login to bookmark your favorites.</h3>
             }
-            <h3>Plan your next ski trip!</h3>  
+             
             <div className="box" >
                 <img
                     src='https://images.unsplash.com/photo-1602411135582-8bfcca8ad53b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'

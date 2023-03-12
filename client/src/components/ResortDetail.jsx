@@ -143,11 +143,15 @@ const ResortDetail = ({resorts, setResorts}) => {
                     
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    <ul> Top elevation: {thisResort.elevation}</ul>
+                    <ul> Vertical Elevation: {thisResort.elevation}ft</ul>
                     <ul>Lifts: {thisResort.lift_count}</ul>
                     <ul>Runs: {thisResort.run_count}</ul>
-                    <ul>Terrain Park: {thisResort.terrain_park.toString()}</ul>
-                    <ul>Night Skiing: {thisResort.night_skiing.toString()}</ul>
+                    {thisResort.terrain_park === true && 
+                    <ul>Terrain Park</ul>
+                    }
+                    {thisResort.night_skiing === true && 
+                    <ul>Night Skiing</ul>
+                    }
                     <a href={thisResort.website} target="_blank">
                         {thisResort.website}
                     </a> 
@@ -187,7 +191,7 @@ const ResortDetail = ({resorts, setResorts}) => {
             <NewComment 
                 thisResort={thisResort} 
                 handleSubmitComment={handleSubmitComment} 
-            /> : <h2>Login to comment!</h2>}
+            /> : <h3>Login to comment!</h3>}
         </div>
     )
 }
