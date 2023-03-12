@@ -36,8 +36,13 @@ const ResortDetail = ({resorts, setResorts}) => {
             },
             body: JSON.stringify(newComment)
         })
-        .then(r => r.json())
-        .then(r => handleAddComment(r))
+        .then(r => {
+            if (r.ok){
+                r.json().then(r => handleAddComment(r))
+            } else {
+                r.json().then(r => alert(r.errors))
+            }
+        })
     }
 
     const handleAddComment = (comment) => {
@@ -62,8 +67,13 @@ const ResortDetail = ({resorts, setResorts}) => {
             },
             body: JSON.stringify(editComment)
         })
-        .then(r => r.json())
-        .then((r) => handleEditUpdateComments(r))
+        .then(r => {
+            if (r.ok){
+                r.json().then(r => handleEditUpdateComments(r))
+            } else {
+                r.json().then(r => alert(r.errors))
+            }
+        })
     }
 
     const handleEditUpdateComments = (updatedComment) => {
