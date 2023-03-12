@@ -156,13 +156,12 @@ const ResortDetail = ({resorts, setResorts}) => {
                         {thisResort.website}
                     </a> 
                 </Typography>
-               
                 {user ? 
                 <NewBookmark resort={thisResort}/>
                 : null }
             </CardContent>
             </Card>
-            
+            {comments.length > 0 ?
             <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#c9eff2' }}>
             <h2>Comments:</h2>
             {comments.map(comment => {
@@ -187,6 +186,7 @@ const ResortDetail = ({resorts, setResorts}) => {
                 )
             })}
             </List>
+            : null }
             {user ? 
             <NewComment 
                 thisResort={thisResort} 

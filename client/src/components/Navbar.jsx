@@ -69,14 +69,6 @@ const Navbar = () => {
             > Login
             </Button>
               )}
-              {!user ? (
-              <Button
-                  component={Link} to='/signup'
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-              Signup
-              </Button>
-              ) : <></>}
             <Box sx={{ flexGrow: 0 }}>
             </Box>
           </Toolbar>

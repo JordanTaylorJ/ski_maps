@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
 
@@ -38,40 +39,45 @@ const Signup = () => {
 
     return(
         <div class='center'>
+        <Typography gutterBottom variant="h4" component="div">
+            SignUp
+        </Typography>
         <Box
-        component="form"
-        onSubmit={(e) => handleSubmit(e)}
-        sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField 
-            id="standard-basic" 
-            label="Username" 
-            variant="standard" 
-            type='text'
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
-        />
-        <TextField 
-            id="standard-basic" 
-            label="Password" 
-            variant="standard" 
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button
-            type='submit' 
-            value="submit"
+            component="form"
+            onSubmit={(e) => handleSubmit(e)}
+            sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
         >
-            Create Account
-        </Button>
-      </Box>
-      <p>{errors}</p>
-      </div>
+            <TextField 
+                id="standard-basic" 
+                label="Username" 
+                variant="standard" 
+                type='text'
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
+            />
+            <TextField 
+                id="standard-basic" 
+                label="Password" 
+                variant="standard" 
+                type="text"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <Button
+                type='submit' 
+                value="submit"
+            >
+                Create Account
+            </Button>
+        </Box>
+        {errors.map((error) => 
+            <p>{error}</p>
+        )}
+        </div>
     )
 }
 

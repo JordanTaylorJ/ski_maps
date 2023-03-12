@@ -71,9 +71,9 @@ const Login = () => {
         </Button>
       </Box>
       <p>{errors}</p>
-      <h3>New Here?</h3>
+      <h3>Don't have an account?</h3>
         <Link to={`/signup`} rel="noreferrer">
-            CreateAccount
+            Signup
         </Link>       
       </div>
     )
