@@ -39,6 +39,9 @@ const Signup = () => {
 
     return(
         <div className='center'>
+        <Box
+            sx={{ mx: 'auto', width: 900, p: 1, m: 1, mt:10,}}
+        >
         <Typography gutterBottom variant="h4" component="div">
             SignUp
         </Typography>
@@ -75,8 +78,9 @@ const Signup = () => {
             </Button>
         </Box>
         {errors.map((error) => 
-            <p>{error}</p>
+            <p key={error}>{error}</p>
         )}
+        </Box>
         </div>
     )
 }
