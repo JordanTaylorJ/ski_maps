@@ -182,7 +182,9 @@ const ResortDetail = ({resorts, setResorts}) => {
                 )
             })}
             </List>
-            : null }
+            : 
+            <p>Be the first to leave a comment!</p> 
+            }
             {user ? 
             <NewComment 
                 thisResort={thisResort} 

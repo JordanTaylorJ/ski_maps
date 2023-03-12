@@ -40,7 +40,6 @@ function App() {
               }  
           />
           <Route path='/resorts/:name' element={<ResortDetail resorts={resorts} setResorts={setResorts} />}/>
-          <Route path='/filter' element={<ResortFilter resorts={resorts}/>}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
