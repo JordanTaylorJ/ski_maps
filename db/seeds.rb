@@ -21,7 +21,7 @@ u5 = User.create(username: "George", password: "beatles")
 #Resorts
 r1 = Resort.create(
     name: "Breckenridge",
-    website: "www.breckenridge.com",
+    website: "http://www.breckenridge.com",
     elevation: 3962,
     operating_status: true,
     latitude: "39.472250035504",
@@ -34,7 +34,7 @@ r1 = Resort.create(
 )
 r2 = Resort.create(
     name: "Monarch",
-    website: "www.skimonarch.com",
+    website: "http://www.skimonarch.com",
     elevation: 3646,
     operating_status: true,
     latitude: "38.509782375",
@@ -47,7 +47,7 @@ r2 = Resort.create(
 )
 r3 = Resort.create(
     name: "Cooper",
-    website: "www.skicooper.com",
+    website: "http://www.skicooper.com",
     elevation: 3566,
     operating_status: true,
     latitude: "39.360555555556",
@@ -60,7 +60,7 @@ r3 = Resort.create(
 )
 r4 = Resort.create(
     name: "Purgatory",
-    website: "www.durangomountainresort.com",
+    website: "http://www.durangomountainresort.com",
     elevation: 3299,
     operating_status: true,
     latitude: "37.626495219635",
@@ -74,7 +74,7 @@ r4 = Resort.create(
 )
 r5 = Resort.create(
     name: "Keystone Resort",
-    website: "www.keystone.snow.com",
+    website: "http://www.keystone.snow.com",
     elevation: 3782,
     operating_status: true,
     latitude: "39.584144457675",
@@ -87,7 +87,7 @@ r5 = Resort.create(
 )
 r6 = Resort.create(
     name: "Powderhorn Resort",
-    website: "www.powderhorn.com",
+    website: "http://www.powderhorn.com",
     elevation: 3002,
     operating_status: true,
     latitude: "39.061300338828",
@@ -300,7 +300,7 @@ Bookmark.create(
 
 
 #Comments
-rand(20..30).times do
+rand(30..40).times do
     Comment.create(
         resort_id: Resort.order("random()").first.id,
         user_id: User.order("random()").first.id,

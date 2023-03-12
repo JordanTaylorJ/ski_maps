@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { UserContext } from "../context/user";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Signup = () => {
 
@@ -80,6 +80,12 @@ const Signup = () => {
         {errors.map((error) => 
             <p key={error}>{error}</p>
         )}
+        <br/>
+        <Typography gutterBottom variant="h7">Already have an account? </Typography>
+        <br/>
+        <Link to={`/login`} rel="noreferrer">
+            Login
+        </Link>  
         </Box>
         </div>
     )

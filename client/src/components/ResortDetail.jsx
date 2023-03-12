@@ -11,6 +11,7 @@ import ListComment from './ListComment';
 import NewComment from './NewComment';
 import NewBookmark from './NewBookmark';
 import Box from '@mui/material/Box';
+import { Link } from "react-router-dom";
 
 const ResortDetail = ({resorts, setResorts}) => {
 
@@ -128,11 +129,11 @@ const ResortDetail = ({resorts, setResorts}) => {
     
     return(
         <div className='center'>
+        <Box sx={{m:4}}>
             <h1>{name}</h1>
             <Card sx={{ maxWidth: 1000 }} >
             <CardMedia
                 sx={{ height: 540 }}
-                //style={{height: 0, paddingTop: '56.25%'}}
                 conmponent="img"
                 height="500"
                 image={map}
@@ -189,7 +190,13 @@ const ResortDetail = ({resorts, setResorts}) => {
             <NewComment 
                 thisResort={thisResort} 
                 handleSubmitComment={handleSubmitComment} 
-            /> : <h3>Login to comment!</h3>}
+            /> 
+            : 
+            <Link to={`/login`} rel="noreferrer">
+                Login
+            </Link>  
+            }
+        </Box>
         </div>
     )
 }

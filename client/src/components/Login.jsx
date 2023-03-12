@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { UserContext } from "../context/user";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -69,9 +70,11 @@ const Login = () => {
         >
             Sign In
         </Button>
-      </Box>
-      <p>{errors}</p>
-      <h3>Don't have an account?</h3>
+        </Box>
+        <p>{errors}</p>
+        <br/>
+        <Typography gutterBottom variant="h7">Need to create an account? </Typography>
+        <br/>
         <Link to={`/signup`} rel="noreferrer">
             Signup
         </Link>       
