@@ -10,14 +10,13 @@ import EditComment from './EditComment';
 import ListComment from './ListComment';
 import NewComment from './NewComment';
 import NewBookmark from './NewBookmark';
+import Box from '@mui/material/Box';
 
 const ResortDetail = ({resorts, setResorts}) => {
 
-    //let location = useLocation();
-    //const thisResort = resorts.find(resort => resort.id === parseInt(location.state.id));
-
     const params = useParams();
     const thisResort = resorts.find(resort => resort.name === params.name);
+    const {name, website, elevation, terrain_park, night_skiing, lift_count, run_count, map} = resorts.find(resort => resort.name === params.name);
     
     const {user} = useContext(UserContext);
     const [comments, setComments] = useState(thisResort.comments)
@@ -43,7 +42,7 @@ const ResortDetail = ({resorts, setResorts}) => {
     const handleAddComment = (comment) => {
         const updatedComments = [...thisResort.comments, comment]
         const updatedResorts = resorts.map((resort) => {
-            if (resort.id == comment.resort_id){
+            if (resort.id === comment.resort_id){
                 return{
                     ...resort, comments:updatedComments
                 }
@@ -128,34 +127,31 @@ const ResortDetail = ({resorts, setResorts}) => {
     }
     
     return(
-        <div class='center'>
-            <h1>{thisResort.name}</h1>
+        <div className='center'>
+            <h1>{name}</h1>
             <Card sx={{ maxWidth: 1000 }} >
             <CardMedia
                 sx={{ height: 540 }}
                 //style={{height: 0, paddingTop: '56.25%'}}
                 conmponent="img"
                 height="500"
-                image={thisResort.map}
+                image={map}
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    <ul> Vertical Elevation: {thisResort.elevation}ft</ul>
-                    <ul>Lifts: {thisResort.lift_count}</ul>
-                    <ul>Runs: {thisResort.run_count}</ul>
-                    {thisResort.terrain_park === true && 
-                    <ul>Terrain Park</ul>
+                <Typography component='div' variant="body2" color="text.secondary">
+                    <Box>Vertical Elevation: {elevation}ft</Box>
+                    <Box>Lifts: {lift_count}</Box>
+                    <Box>Runs: {run_count}</Box>
+                    {terrain_park === true && 
+                    <Box>Terrain Park</Box>
                     }
-                    {thisResort.night_skiing === true && 
-                    <ul>Night Skiing</ul>
+                    {night_skiing === true && 
+                    <Box>Night Skiing</Box>
                     }
-                    <a href={thisResort.website} target="_blank">
-                        {thisResort.website}
-                    </a> 
                 </Typography>
+                <a href={website} target="_blank">
+                    {website}
+                </a> 
                 {user ? 
                 <NewBookmark resort={thisResort}/>
                 : null }
@@ -166,7 +162,7 @@ const ResortDetail = ({resorts, setResorts}) => {
             <h2>Comments:</h2>
             {comments.map(comment => {
                 return(
-                    <div>
+                    <div key={comment.id}>
                     {editCommentId === comment.id ? 
                     <EditComment 
                         editComment={editComment}

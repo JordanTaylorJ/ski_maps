@@ -31,17 +31,19 @@ const Bookmarks = () => {
     if (bookmarks.length > 0) {
         return(
             <div>
-            {bookmarks.map(bookmark => {
+            {bookmarks.map(({id, resort: {name}, notes}) => {
                 return(
-                <div key={bookmark.id} >
-                    <h2>{bookmark.resort.name}</h2>
-                    <p>Notes: {bookmark.notes}</p>
-                    <Link to={`/resorts/${bookmark.resort.name}`} rel="noreferrer">
+                <div key={id} >
+                    <h2>{name}</h2>
+                    {notes ? 
+                    <p>Notes: {notes}</p>
+                    : null}
+                    <Link to={`/resorts/${name}`} rel="noreferrer">
                         View Details
                     </Link>       
                     <Button 
                         onClick={(e) => handleDelete(e)}
-                        value={bookmark.id}
+                        value={id}
                     >
                         Delete
                     </Button>

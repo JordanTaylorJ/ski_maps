@@ -37,7 +37,7 @@ const Login = () => {
     }
 
     return(
-        <div class='center'>
+        <div className='center'>
         <Box
         component="form"
         onSubmit={(e) => handleSubmit(e)}

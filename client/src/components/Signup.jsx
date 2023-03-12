@@ -38,7 +38,7 @@ const Signup = () => {
     }
 
     return(
-        <div class='center'>
+        <div className='center'>
         <Typography gutterBottom variant="h4" component="div">
             SignUp
         </Typography>
