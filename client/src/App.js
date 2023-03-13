@@ -18,7 +18,7 @@ function App() {
   const [resorts, setResorts] = useState([]);
 
   useEffect(() => {
-    fetch('./api/resorts/show')
+    fetch('./resorts/show')
     .then(r => r.json())
     .then(r => setResorts(r))
   }, []);
