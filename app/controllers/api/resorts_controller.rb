@@ -1,4 +1,4 @@
-class ResortsController < ApplicationController
+class Api::ResortsController < ApplicationController
 
     skip_before_action :authorized, only: [:show] 
 

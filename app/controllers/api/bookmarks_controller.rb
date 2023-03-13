@@ -1,4 +1,4 @@
-class BookmarksController < ApplicationController
+class Api::BookmarksController < ApplicationController
 
     def create
         bookmark = Bookmark.create(bookmark_params)
