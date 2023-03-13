@@ -6,7 +6,7 @@ function UserProvider({children}){
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    fetch('/auth')
+    fetch('/api/auth')
     .then(res => {
       if (res.ok){
         res.json().then(currentUser => setUser(currentUser))
