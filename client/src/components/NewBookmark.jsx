@@ -44,7 +44,7 @@ const NewBookmark = ({resort}) => {
         if (answer.length > 0){
             alert("This has already been bookmarked!")
         } else {
-            fetch('/bookmarks',{
+            fetch('/api/bookmarks',{
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json'

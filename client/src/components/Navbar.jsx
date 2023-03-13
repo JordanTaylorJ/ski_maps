@@ -16,7 +16,7 @@ const Navbar = () => {
     const nav = useNavigate();
 
     function handleLogout() {
-        fetch("/logout", {
+        fetch("/api/logout", {
           method: "DELETE",
         }).then(() => setUser(""))
         nav("/login");

@@ -29,7 +29,7 @@ const ResortDetail = ({resorts, setResorts}) => {
     }) 
 
     const handleSubmitComment = (newComment) => {
-        fetch('/comments', {
+        fetch('/api/comments', {
             method: 'POST',
             headers: {
                 "Content-Type" : 'application/json'
@@ -60,7 +60,7 @@ const ResortDetail = ({resorts, setResorts}) => {
 
     const handleSubmitEdit = (e) => {
         e.preventDefault();
-        fetch(`/comments/${editCommentId}`, {
+        fetch(`/api/comments/${editCommentId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type' : 'application/json'
@@ -97,7 +97,7 @@ const ResortDetail = ({resorts, setResorts}) => {
 
     const handleDelete = (e) => {
         e.preventDefault();
-        fetch(`/comments/${e.target.value}`, {
+        fetch(`/api/comments/${e.target.value}`, {
             method: 'DELETE'
         })
         .then(r => {

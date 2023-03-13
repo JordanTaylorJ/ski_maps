@@ -9,7 +9,7 @@ const Bookmarks = () => {
     const [bookmarks, setBookmarks] = useState(user.bookmarks)
 
     const handleDelete = (e) => {
-        fetch(`/bookmarks/${e.target.value}`, {
+        fetch(`/api/bookmarks/${e.target.value}`, {
             method: 'DELETE'
         })
         .then(r => {

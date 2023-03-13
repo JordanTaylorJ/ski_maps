@@ -10,7 +10,6 @@ import Bookmarks from './components/Bookmarks';
 import ResortDetail from './components/ResortDetail';
 import NotFound from './components/NotFound';
 import {UserProvider} from './context/user';
-import ResortFilter from './components/ResortFilter';
 import { PrivateRoute } from './components/PrivateRoute';
 
 function App() {
@@ -18,7 +17,7 @@ function App() {
   const [resorts, setResorts] = useState([]);
 
   useEffect(() => {
-    fetch('./resorts/show')
+    fetch('/api/resorts/show')
     .then(r => r.json())
     .then(r => setResorts(r))
   }, []);

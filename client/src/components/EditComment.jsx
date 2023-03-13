@@ -7,15 +7,15 @@ const EditComment = ({editComment, handleEditFormChange, handleSubmitEdit, handl
 
     return(
         <Box
-                key={editComment.id}
-                component="form"
-                onSubmit={(e) => handleSubmitEdit(e)}
-                sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
+            key={editComment.id}
+            component="form"
+            onSubmit={(e) => handleSubmitEdit(e)}
+            sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+        >
             <TextField 
                 id="outlined-multiline-flexible"
                 multiline
