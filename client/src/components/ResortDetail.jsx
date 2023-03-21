@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { UserContext } from "../context/user";
 import List from '@mui/material/List';
@@ -16,11 +16,30 @@ import { Link } from "react-router-dom";
 const ResortDetail = ({resorts, setResorts}) => {
 
     const params = useParams();
-    const thisResort = resorts.find(resort => resort.name === params.name);
-    const {name, website, elevation, terrain_park, night_skiing, lift_count, run_count, map} = resorts.find(resort => resort.name === params.name);
-    
+    const [thisResort, setThisResort] = useState({
+        name: "Loading",
+        website: "",
+        elevation: 0,
+        terrain_park: false,
+        night_skiing: false,
+        lift_count: 0,
+        run_count: 0,
+        map: ''
+    });
     const {user} = useContext(UserContext);
     const [comments, setComments] = useState(thisResort.comments)
+    
+
+    useEffect(() => {
+        fetch('/api/resorts/show')
+        .then(r => r.json())
+        .then((resorts) => {
+            const newResort =(resorts.find((resort) => resort.name === params.name)) 
+            setThisResort(newResort)
+            setComments(newResort.comments)
+        })
+    }, [params]);
+    
     const [editCommentId, setEditCommentId] = useState(null);
     const [editComment, setEditComment] = useState({
         comment: "",
@@ -28,6 +47,7 @@ const ResortDetail = ({resorts, setResorts}) => {
         resort_id: thisResort.id
     }) 
 
+    console.log('thisResort', thisResort)
     const handleSubmitComment = (newComment) => {
         fetch('/api/comments', {
             method: 'POST',
@@ -137,38 +157,40 @@ const ResortDetail = ({resorts, setResorts}) => {
         setEditCommentId(null);
     }
     
+    if (resorts) {
     return(
         <div className='center'>
         <Box sx={{m:4}}>
-            <h1>{name}</h1>
+            <h1>{thisResort.name}</h1>
             <Card sx={{ maxWidth: 1000 }} >
             <CardMedia
                 sx={{ height: 540 }}
                 conmponent="img"
                 height="500"
-                image={map}
+                image={thisResort.map}
             />
             <CardContent>
+                
                 <Typography component='div' variant="body2" color="text.secondary">
-                    <Box>Vertical Elevation: {elevation}ft</Box>
-                    <Box>Lifts: {lift_count}</Box>
-                    <Box>Runs: {run_count}</Box>
-                    {terrain_park === true && 
+                    <Box>Vertical Elevation: {thisResort.elevation}ft</Box>
+                    <Box>Lifts: {thisResort.lift_count}</Box>
+                    <Box>Runs: {thisResort.run_count}</Box>
+                    {thisResort.terrain_park === true && 
                     <Box>Terrain Park</Box>
                     }
-                    {night_skiing === true && 
+                    {thisResort.night_skiing === true && 
                     <Box>Night Skiing</Box>
                     }
                 </Typography>
-                <a href={website} target="_blank">
-                    {website}
+                <a href={thisResort.website} target="_blank" rel="noreferrer">
+                    {thisResort.website}
                 </a> 
                 {user ? 
                 <NewBookmark resort={thisResort}/>
                 : null }
             </CardContent>
             </Card>
-            {comments.length > 0 ?
+            {comments ?
             <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#c9eff2' }}>
             <h2>Comments:</h2>
             {comments.map(comment => {
@@ -209,6 +231,16 @@ const ResortDetail = ({resorts, setResorts}) => {
         </Box>
         </div>
     )
+    } else {
+        <>
+        <h1>Loading</h1>
+        <h1>Loading</h1>
+        <h1>Loading</h1>
+        <h1>Loading</h1>
+        <h1>Loading</h1>
+        <h1>Loading</h1>
+        </>
+    }
 }
 
 export default ResortDetail;

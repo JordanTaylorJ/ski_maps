@@ -12,7 +12,7 @@ const NewComment = ({thisResort, handleSubmitComment}) => {
         resort_id: thisResort.id,
         comment: ""
     });
-
+    console.log('comment', newComment)
     const handleCommentChange = (e) => {
         const target = e.target;
         setNewComment({...newComment, [target.name]:target.value});
