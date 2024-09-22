@@ -5,8 +5,11 @@ import { UserContext } from "../context/user";
 import Pin from './Pin'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import ButtonBase from '@mui/material/ButtonBase';
 import Modal from '@mui/material/Modal';
 import NewBookmark from './NewBookmark';
+
 
 
 const ResortsMap = ({resorts}) => {
@@ -46,7 +49,7 @@ const ResortsMap = ({resorts}) => {
         p: 4,
     };
 
-    const markers = useMemo(() => resorts.map(resort =>
+    const markers = useMemo(() => resorts.map(resort =>    
         <Marker 
             key={resort.id}
             latitude={resort.latitude}
@@ -57,8 +60,12 @@ const ResortsMap = ({resorts}) => {
                 handleOpen()
             }}
         >
-        <Pin />
-        </Marker>
+        <Tooltip title={resort.name}>
+            <ButtonBase>
+                <Pin/>
+            </ButtonBase>
+        </Tooltip>
+        </Marker>  
     ), [resorts]);
 
     return(
@@ -83,9 +90,6 @@ const ResortsMap = ({resorts}) => {
             <Box sx={style}>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     {selectedResort.name}
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    {selectedResort.website}
                 </Typography>
                 <Link to={`/resorts/${selectedResort.name}`}>
                     View Details
