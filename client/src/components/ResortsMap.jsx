@@ -91,9 +91,6 @@ const ResortsMap = ({resorts}) => {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     {selectedResort.name}
                 </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    {selectedResort.website}
-                </Typography>
                 <Link to={`/resorts/${selectedResort.name}`}>
                     View Details
                 </Link>       
