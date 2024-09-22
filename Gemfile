@@ -43,6 +43,7 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'pry', '~> 0.13.1'
 end
 
 group :development do
@@ -54,3 +55,5 @@ gem "active_model_serializers", "~> 0.10.12"
 
 #Faker gem for seeds
 gem "faker", "~> 2.18"
+
+gem 'net-http'
