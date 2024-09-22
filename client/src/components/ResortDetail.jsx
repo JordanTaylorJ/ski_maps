@@ -24,7 +24,7 @@ const ResortDetail = ({resorts, setResorts}) => {
         night_skiing: false,
         lift_count: 0,
         run_count: 0,
-        map: ''
+        map_image: ''
     });
     const {user} = useContext(UserContext);
     const [comments, setComments] = useState(thisResort.comments)
@@ -156,6 +156,8 @@ const ResortDetail = ({resorts, setResorts}) => {
     const handleCancelEditClick = () => {
         setEditCommentId(null);
     }
+
+    console.log("line 160 detail", thisResort)
     
     if (resorts) {
     return(
@@ -167,7 +169,7 @@ const ResortDetail = ({resorts, setResorts}) => {
                 sx={{ height: 540 }}
                 conmponent="img"
                 height="500"
-                image={thisResort.map}
+                image={thisResort.map_image}
             />
             <CardContent>
                 

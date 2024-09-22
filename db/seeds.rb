@@ -30,8 +30,12 @@ r1 = Resort.create(
     night_skiing: false,
     lift_count: 18,
     run_count: 155,
-    map: 'https://skimap.org/data/510/150/1665455999jpg_render.jpg'
+    map: 'https://files.skimap.org/8pvsrapa9cocoaqlfwrm5os9scag.pdf'
 )
+
+r1.map_image.attach(io: File.open(Rails.root.join('db/images/breckenridge.jpg')), 
+filename: 'breckenridge.jpg')
+
 r2 = Resort.create(
     name: "Monarch",
     website: "http://www.skimonarch.com",
@@ -45,6 +49,10 @@ r2 = Resort.create(
     run_count: 63,
     map: 'https://skimap.org/data/511/3535/1634341976thumb1600w.jpg'
 )
+
+r2.map_image.attach(io: File.open(Rails.root.join('db/images/monarch.jpg')), 
+filename: 'monarch.jpg')
+
 r3 = Resort.create(
     name: "Cooper",
     website: "http://www.skicooper.com",
@@ -58,6 +66,10 @@ r3 = Resort.create(
     run_count: 41,
     map: 'https://skimap.org/data/512/3535/1634338606thumb1600w.jpg'
 )
+
+r3.map_image.attach(io: File.open(Rails.root.join('db/images/cooper.jpg')), 
+filename: 'cooper.jpg')
+
 r4 = Resort.create(
     name: "Purgatory",
     website: "http://www.durangomountainresort.com",
@@ -72,6 +84,10 @@ r4 = Resort.create(
     map: 'https://skimap.org/data/518/2200/1576454357jpg_render.jpg'
 
 )
+
+r4.map_image.attach(io: File.open(Rails.root.join('db/images/purgatory.jpg')), 
+filename: 'purgatory.jpg')
+
 r5 = Resort.create(
     name: "Keystone Resort",
     website: "http://www.keystone.snow.com",
@@ -85,6 +101,10 @@ r5 = Resort.create(
     run_count: 135,
     map: 'https://skimap.org/data/519/2200/1632084626jpg_render.jpg'
 )
+
+r5.map_image.attach(io: File.open(Rails.root.join('db/images/keystone.jpg')), 
+filename: 'keystone.jpg')
+
 r6 = Resort.create(
     name: "Powderhorn Resort",
     website: "http://www.powderhorn.com",
@@ -98,6 +118,10 @@ r6 = Resort.create(
     run_count: 45,
     map: 'https://skimap.org/data/420/4359/1645398583thumb1600w.jpg'
 )
+
+r6.map_image.attach(io: File.open(Rails.root.join('db/images/powderhorn.jpg')), 
+filename: 'powderhorn.jpg')
+
 r7 = Resort.create(
     name: "Beaver Creek Resort",
     website: "https://www.beavercreek.com/",
@@ -111,6 +135,10 @@ r7 = Resort.create(
     run_count: 148,
     map: 'https://skimap.org/data/497/4070/1677369962jpg_render.jpg'
 )
+
+r7.map_image.attach(io: File.open(Rails.root.join('db/images/beavercreek.jpg')), 
+filename: 'beavercreek.jpg')
+
 r8 = Resort.create(
     name: "Steamboat Ski Resort",
     website: "http://www.steamboat.com",
@@ -124,6 +152,10 @@ r8 = Resort.create(
     run_count: 165,
     map: 'https://skimap.org/data/500/5095/1666756974jpg_render.jpg'
 )
+
+r8.map_image.attach(io: File.open(Rails.root.join('db/images/steamboat.jpg')), 
+filename: 'steamboat.jpg')
+
 r9 = Resort.create(
     name: "Aspen Snowmass",
     website: "http://www.aspensnowmass.com",
@@ -137,6 +169,10 @@ r9 = Resort.create(
     run_count: 76,
     map: 'https://skimap.org/data/1031/3535/1676164420jpg_render.jpg'
 )
+
+r9.map_image.attach(io: File.open(Rails.root.join('db/images/snowmass.jpg')), 
+filename: 'snowmass.jpg')
+
 r10 = Resort.create(
     name: "Winter Park Resort",
     website: "http://www.winterparkresort.com/",
@@ -150,6 +186,10 @@ r10 = Resort.create(
     run_count: 143,
     map: 'https://skimap.org/data/503/5098/1666803394jpg_render.jpg'
 )
+
+r10.map_image.attach(io: File.open(Rails.root.join('db/images/winterpark.jpg')), 
+filename: 'winterpark.jpg')
+
 r11 = Resort.create(
     name: "Wolf Creek Ski Area",
     website: "http://www.wolfcreekski.com/",
@@ -163,6 +203,10 @@ r11 = Resort.create(
     run_count: 77,
     map: 'https://skimap.org/data/505/3535/1634337883jpg_render.jpg'
 )
+
+r11.map_image.attach(io: File.open(Rails.root.join('db/images/wolfcreek.jpg')), 
+filename: 'wolfcreek.jpg')
+
 r12 = Resort.create(
     name: "Vail",
     website: "http://www.vail.snow.com",
@@ -176,6 +220,10 @@ r12 = Resort.create(
     run_count: 193,
     map: 'https://skimap.org/data/507/3535/1664218364thumb1600w.jpg'
 )
+
+r12.map_image.attach(io: File.open(Rails.root.join('db/images/vail.jpg')), 
+filename: 'vail.jpg')
+
 r13 = Resort.create(
     name: "Copper Mountain Resort",
     website: "http://www.coppercolorado.com",
@@ -189,6 +237,10 @@ r13 = Resort.create(
     run_count: 125,
     map: 'https://skimap.org/data/509/3535/1668473559jpg_render.jpg'
 )
+
+r13.map_image.attach(io: File.open(Rails.root.join('db/images/copper.jpg')), 
+filename: 'copper.jpg')
+
 r14 = Resort.create(
     name: "Arapahoe Basin",
     website: "http://www.arapahoebasin.com",
@@ -202,6 +254,10 @@ r14 = Resort.create(
     run_count: 105,
     map: 'https://skimap.org/data/513/150/1665456205jpg_render.jpg'
 )
+
+r14.map_image.attach(io: File.open(Rails.root.join('db/images/abasin.jpg')), 
+filename: 'abasin.jpg')
+
 r15 = Resort.create(
     name: "Crested Butte Mountain Resort",
     website: "http://www.skicb.com/",
@@ -215,6 +271,10 @@ r15 = Resort.create(
     run_count: 121,
     map: 'https://skimap.org/data/514/5095/1668817056jpg_render.jpg'
 )
+
+r15.map_image.attach(io: File.open(Rails.root.join('db/images/crestedbutte.jpg')), 
+filename: 'crestedbutte.jpg')
+
 r16 = Resort.create(
     name: "Telluride",
     website: "http://tellurideskiresort.com/",
@@ -228,6 +288,10 @@ r16 = Resort.create(
     run_count: 147,
     map: 'https://skimap.org/data/517/2200/1637368445jpg_render.jpg'
 )
+
+r16.map_image.attach(io: File.open(Rails.root.join('db/images/telluride.jpg')), 
+filename: 'telluride.jpg')
+
 r17 = Resort.create(
     name: "Silverton Mountain",
     website: "http://www.silvertonmountain.com/page/home",
@@ -241,6 +305,10 @@ r17 = Resort.create(
     run_count: 0,
     map: 'https://skimap.org/data/2280/3535/1573356158.jpg'
 )
+
+r17.map_image.attach(io: File.open(Rails.root.join('db/images/silverton.jpg')), 
+filename: 'silverton.jpg')
+
 r18 = Resort.create(
     name: "Loveland",
     website: "http://www.skiloveland.com/",
@@ -254,6 +322,10 @@ r18 = Resort.create(
     run_count: 70,
     map: 'https://skimap.org/data/515/2200/1666208042thumb1600w.jpg'
 )
+
+r18.map_image.attach(io: File.open(Rails.root.join('db/images/loveland.jpg')), 
+filename: 'loveland.jpg')
+
 r19 = Resort.create(
     name: "Ski Granby Ranch",
     website: "http://www.granbyranch.com/",
@@ -267,6 +339,10 @@ r19 = Resort.create(
     run_count: 33,
     map: 'https://skimap.org/data/516/2200/1670552124thumb1600w.jpg'
 )
+
+r19.map_image.attach(io: File.open(Rails.root.join('db/images/granbyranch.jpg')), 
+filename: 'granbyranch.jpg')
+
 r20 = Resort.create(
     name: "Echo Mountain",
     website: "https://www.echomountainresort.com/",
@@ -280,6 +356,9 @@ r20 = Resort.create(
     run_count: 8,
     map: 'https://skimap.org/data/1034/2200/1666984675thumb1600w.jpg'
 )
+
+r20.map_image.attach(io: File.open(Rails.root.join('db/images/echo.jpg')), 
+filename: 'echo.jpg')
 
 #Bookmarks 
 Bookmark.create(
