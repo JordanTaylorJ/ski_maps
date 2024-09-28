@@ -14,32 +14,12 @@ import Box from '@mui/material/Box';
 import { Link } from "react-router-dom";
 
 const ResortDetail = ({resorts, setResorts}) => {
-
     const params = useParams();
-    const [thisResort, setThisResort] = useState({
-        id: resorts?.find((resort) => resort.name === params.name).id,
-        name: "Loading",
-        website: "",
-        elevation: 0,
-        terrain_park: false,
-        night_skiing: false,
-        lift_count: 0,
-        run_count: 0,
-        map_image: ''
-    });
     const {user} = useContext(UserContext);
-    const [comments, setComments] = useState(thisResort.comments)
     
-    useEffect(() => {
-        fetch('/api/resorts/show')
-        .then(r => r.json())
-        .then((resorts) => {
-            const newResort =(resorts.find((resort) => resort.name === params.name)) 
-            setThisResort(newResort)
-            setComments(newResort.comments)
-        })
-    }, [params]);
-    
+    const thisResort = resorts?.find((resort) => resort.name === params.name)
+    //console.log('this', resorts?.find((resort) => resort.name === params.name).comments)
+    const [comments, setComments] = useState('')
 
     const [editCommentId, setEditCommentId] = useState(null);
     const [editComment, setEditComment] = useState({
@@ -47,6 +27,12 @@ const ResortDetail = ({resorts, setResorts}) => {
         user_id: "",
         resort_id: thisResort.id
     }) 
+    
+    if (resorts.length === 0) {
+        return(<h1>Loading</h1>)
+    } else {
+
+    console.log('resorts from top', resorts)
 
     const handleSubmitComment = (newComment) => {
         fetch('/api/comments', {
@@ -157,7 +143,7 @@ const ResortDetail = ({resorts, setResorts}) => {
         setEditCommentId(null);
     }
     
-    if (resorts) {
+
     return(
         <div className='center'>
         <Box sx={{m:4}}>
@@ -165,12 +151,11 @@ const ResortDetail = ({resorts, setResorts}) => {
             <Card sx={{ maxWidth: 1000 }} >
             <CardMedia
                 sx={{ height: 540 }}
-                conmponent="img"
+                component="img"
                 height="500"
                 image={thisResort.map_image}
             />
             <CardContent>
-                
                 <Typography component='div' variant="body2" color="text.secondary">
                     <Box>Vertical Elevation: {thisResort.elevation}ft</Box>
                     <Box>Lifts: {thisResort.lift_count}</Box>
@@ -225,22 +210,72 @@ const ResortDetail = ({resorts, setResorts}) => {
             /> 
             : 
             <Link to={`/login`} rel="noreferrer">
-                Login
+                Login to join the conversation. 
             </Link>  
             }
         </Box>
         </div>
     )
-    } else {
-        <>
-        <h1>Loading</h1>
-        <h1>Loading</h1>
-        <h1>Loading</h1>
-        <h1>Loading</h1>
-        <h1>Loading</h1>
-        <h1>Loading</h1>
-        </>
-    }
-}
+
+}}
 
 export default ResortDetail;
+
+
+    
+    /*
+            const thisResort = {
+        id: resorts?.find((resort) => resort.name === params.name).id,
+        name: resorts?.find((resort) => resort.name === params.name).name,
+        website: resorts?.find((resort) => resort.name === params.name).website,
+        elevation: resorts?.find((resort) => resort.name === params.name).elevation,
+        terrain_park: resorts?.find((resort) => resort.name === params.name).terrain_park,
+        night_skiing: resorts?.find((resort) => resort.name === params.name).night_skiing,
+        lift_count: resorts?.find((resort) => resort.name === params.name).lift_count,
+        run_count: resorts?.find((resort) => resort.name === params.name).run_count,
+        map_image: resorts?.find((resort) => resort.name === params.name).map_image
+    };
+
+   useEffect(()=> {
+        const thisResort = resorts.find((resort) => resort.name === params.name)
+        //setThisResort(newResort)
+        setComments(thisResort.comments)
+    }, [params])
+
+
+    const [thisResort, setThisResort] = useState({
+        id: resorts?.find((resort) => resort.name === params.name).id,
+        //id: '',
+        name: resorts?.find((resort) => resort.name === params.name).name,
+        website: resorts?.find((resort) => resort.name === params.name).website,
+        elevation: resorts?.find((resort) => resort.name === params.name).elevation,
+        terrain_park: resorts?.find((resort) => resort.name === params.name).terrain_park,
+        night_skiing: resorts?.find((resort) => resort.name === params.name).night_skiing,
+        lift_count: resorts?.find((resort) => resort.name === params.name).lift_count,
+        run_count: resorts?.find((resort) => resort.name === params.name).run_count,
+        map_image: resorts?.find((resort) => resort.name === params.name).map_image
+    });
+    */
+    
+
+    //console.log('this resort', thisResort)
+    /*
+    useEffect(() => {
+        fetch('/api/resorts/show')
+        .then(r => r.json())
+        .then((resorts) => {
+            const newResort =(resorts.find((resort) => resort.name === params.name)) 
+            setThisResort(newResort)
+            setComments(newResort.comments)
+        })
+    }, [params]);
+    
+
+    useEffect(()=> {
+        console.log('are these loading in?', resorts)
+        const newResort = resorts.find((resort) => resort.name === params.name)
+        setThisResort(newResort)
+        setComments(newResort.comments)
+    }, [params])
+
+    */
