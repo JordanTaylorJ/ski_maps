@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import { UserContext } from "../context/user";
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 const Bookmarks = () => {
 
@@ -30,7 +31,15 @@ const Bookmarks = () => {
 
     if (bookmarks.length > 0) {
         return(
-            <div>
+            <Box sx={{ 
+                position: 'absolute', 
+                left: '50%', 
+                top: '60%',
+                transform: 'translate(-50%, -50%)', 
+                width: 650, 
+                height: 650, 
+                }}
+            >
             {bookmarks.map(({id, resort: {name}, notes}) => {
                 return(
                 <div key={id} >
@@ -50,7 +59,7 @@ const Bookmarks = () => {
                 </div>
                 )
             })}
-            </div>
+            </Box>
         )
     } else {
         return(

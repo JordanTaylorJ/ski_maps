@@ -6,8 +6,6 @@ class ResortSerializer < ActiveModel::Serializer
   
   def map_image
     rails_blob_path(object.map_image, disposition: "attachment", only_path:true)
-    #variant = object.map_image.variant(resize_to_fit: [150, nil])
-    #return rails_representation_url(variant, only_path:true)
   end
 
 end
