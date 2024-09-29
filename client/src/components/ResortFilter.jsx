@@ -1,11 +1,30 @@
-import React from 'react';
-import ReactMapGL, { Layer } from 'react-map-gl';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import { Checkbox } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 
-const ResortFilter = () => {
+const ResortFilter = ({resorts}) => {
+
+    const [filteredResorts, setFilteredResorts] = useState(resorts)
+    const [filters, setFilters] = useState({terrain: false, night: false})
+    
+    const handleChange = (e) => {
+        setFilters({...filters, [e.target.name]:e.target.checked})
+        fetch(`/api/resorts/${filters.toString()}`) 
+        .then(r => r.json())
+        .then(data => setFilteredResorts(data))
+    }
+    console.log('what is changing', filters)
+    console.log('the resorts filtered', filteredResorts)
+
+    const handleSubmit = (e) => {
+        //
+        e.preventDefault(); 
+        fetch(`/api/resorts/${filters}`) 
+        .then(r => r.json())
+        .then(data => setFilteredResorts(data))
+    }
 
     return(
         <Box
@@ -19,8 +38,8 @@ const ResortFilter = () => {
             sx={{ border: '2px solid grey' }}
         >
             <FormGroup>
-                <FormControlLabel control={<Checkbox ></Checkbox>} label='Terrain Park' />
-                <FormControlLabel control={<Checkbox ></Checkbox>} label='Night Skiing' />
+                <FormControlLabel control={<Checkbox value={filters.terrain} name='terrain' onChange={(e) => handleChange(e)}></Checkbox>} label='Terrain Park' />
+                <FormControlLabel control={<Checkbox value={filters.night} name='night' onChange={(e) => handleChange(e)} ></Checkbox>} label='Night Skiing' />
             </FormGroup>    
         </Box>
     )
