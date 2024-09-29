@@ -9,8 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 import ButtonBase from '@mui/material/ButtonBase';
 import Modal from '@mui/material/Modal';
 import NewBookmark from './NewBookmark';
-
-
+import ResortFilter from './ResortFilter';
 
 const ResortsMap = ({resorts}) => {
 
@@ -76,7 +75,9 @@ const ResortsMap = ({resorts}) => {
             mapStyle="mapbox://styles/mapbox/streets-v11"
             transitionDuration='200'
             style={{width: '100%', height: '100vh'}}
+            position='relative'
         > 
+            <ResortFilter resorts={resorts}/>
             <FullscreenControl style={fullscreenControlStyle} />
             <NavigationControl style={navStyle} />
             {markers}
