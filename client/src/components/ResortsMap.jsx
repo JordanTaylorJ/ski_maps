@@ -14,6 +14,7 @@ import ResortFilter from './ResortFilter';
 const ResortsMap = ({resorts}) => {
 
     const [selectedResort, setSelectedResort] = useState(null);
+    const [filteredResorts, setFilteredResorts] = useState(resorts)
     const [viewport, setViewport] = useState({
         longitude: -105.881866,
         latitude: 38.507438,
@@ -48,7 +49,7 @@ const ResortsMap = ({resorts}) => {
         p: 4,
     };
 
-    const markers = useMemo(() => resorts.map(resort =>    
+    const markers = useMemo(() => filteredResorts.map(resort =>    
         <Marker 
             key={resort.id}
             latitude={resort.latitude}
@@ -65,7 +66,7 @@ const ResortsMap = ({resorts}) => {
             </ButtonBase>
         </Tooltip>
         </Marker>  
-    ), [resorts]);
+    ), [filteredResorts]);
 
     return(
         <ReactMapGL
@@ -77,7 +78,7 @@ const ResortsMap = ({resorts}) => {
             style={{width: '100%', height: '100vh'}}
             position='relative'
         > 
-            <ResortFilter resorts={resorts}/>
+            <ResortFilter setFilteredResorts={setFilteredResorts}/>
             <FullscreenControl style={fullscreenControlStyle} />
             <NavigationControl style={navStyle} />
             {markers}
