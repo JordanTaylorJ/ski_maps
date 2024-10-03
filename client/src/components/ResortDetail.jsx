@@ -18,13 +18,13 @@ const ResortDetail = ({resorts, setResorts}) => {
     const {user} = useContext(UserContext);
     
     const thisResort = resorts?.find((resort) => resort.name === params.name)
-    const [comments, setComments] = useState(thisResort.comments)
+    const [comments, setComments] = useState(thisResort?.comments)
 
     const [editCommentId, setEditCommentId] = useState(null);
     const [editComment, setEditComment] = useState({
         comment: "",
         user_id: "",
-        resort_id: thisResort.id
+        resort_id: thisResort?.id
     }) 
     
     if (resorts.length === 0) {
@@ -139,7 +139,8 @@ const ResortDetail = ({resorts, setResorts}) => {
         const handleCancelEditClick = () => {
             setEditCommentId(null);
         }
-
+        
+        if (thisResort) {
         return(
             <div className='center'>
             <Box sx={{m:4}}>
@@ -171,7 +172,7 @@ const ResortDetail = ({resorts, setResorts}) => {
                     : null }
                 </CardContent>
                 </Card>
-                {comments.length > 0 ?
+                {comments?.length > 0 ?
                 <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#c9eff2' }}>
                 <h2>Comments:</h2>
                 {comments.map(comment => {
@@ -212,6 +213,9 @@ const ResortDetail = ({resorts, setResorts}) => {
             </Box>
             </div>
         )
+    }
+    else 
+        <h1 >loading</h1>
     }
 }
 
