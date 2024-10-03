@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   namespace :api do
     resources :comments, only: [:create, :update, :destroy]
     resources :bookmarks, only: [:create, :destroy]
-    resources :resorts, only: [:show]
+    #resources :resorts, only: [:show]
+
+    get '/resorts/show', to: 'resorts#show'
+    get '/resorts/filters', to: 'resorts#filtered'
 
     post '/signup', to: 'users#create'
     get '/auth', to: 'users#show'
